@@ -1,0 +1,108 @@
+flowchart TB
+    Analyst["Security analyst"] --> UI["SOC dashboard<br/>HTML · CSS · JavaScript"]
+    UI <-->|"HTTP / JSON"| API["FastAPI microservice<br/>src/cyber_assistant/main.py"]
+
+    subgraph Offline["A · Offline data and model preparation"]
+        Raw["CIC-IDS2017<br/>8 Parquet files · 78 source columns"]
+        Ingest["Dataset audit, normalization, label mapping,<br/>provenance capture, indexed ingestion"]
+        DB[("SQLite<br/>2,313,810 flows")]
+        Corpus["Historical incident corpus seeding<br/>291 summaries"]
+        FTS[("SQLite FTS5<br/>BM25 keyword index")]
+        TrainC["Supervised training<br/>65 features · 9 attack families"]
+        Classifier["HistGradientBoostingClassifier<br/>attack_classifier.joblib"]
+        TrainA["Benign-only anomaly training<br/>threshold calibration"]
+        Anomaly["IsolationForest<br/>anomaly_detector.joblib"]
+        Knowledge["Curated MITRE, NIST, feature guidance,<br/>historical incident summaries"]
+        KnowledgeIngest["Synapt ingestion scripts<br/>trident_ingest"]
+        Raw --> Ingest --> DB
+        DB --> Corpus --> FTS
+        DB --> TrainC --> Classifier
+        DB --> TrainA --> Anomaly
+        Knowledge --> KnowledgeIngest
+    end
+
+    subgraph SynaptLayer["B · External knowledge and semantic retrieval"]
+        MCP["SynaptClient<br/>TLS · auth · JSON-RPC · dynamic tool discovery"]
+        Synapt[("Synapt Context Substrate<br/>provider: assist_cyber")]
+        Agents["Configured read-only roles<br/>knowledge · historical RAG · judge review"]
+        KnowledgeIngest --> Synapt
+        MCP <-->|"query, search, feedback"| Synapt
+        Agents --- Synapt
+    end
+
+    subgraph Investigation["C · POST /investigate/flow — sequential LangGraph workflow"]
+        G1["1 · Guardrail agent<br/>schema, relevance, prompt-injection and action checks"]
+        G2["2 · Flow triage agent<br/>load record/raw telemetry; 404 enforcement;<br/>historical hybrid retrieval"]
+        G3["3 · ML analysis agent<br/>attack classification, intrusion risk,<br/>feature deviations, anomaly score"]
+        G4["4 · Knowledge agent<br/>sanitized domain query to Synapt;<br/>deterministic local degradation path"]
+        G5["5 · Prioritization agent<br/>deterministic P1–P4 policy"]
+        G6["6 · Response agent<br/>investigation steps, response guidance,<br/>provenance and limitations"]
+        G7["7 · Judge agent<br/>hard safety invariant + four-dimension rubric;<br/>provider-backed judge when available"]
+        G1 --> G2 --> G3 --> G4 --> G5 --> G6 --> G7
+    end
+
+    API -->|"investigate"| G1
+    DB -->|"flow lookup"| G2
+    FTS -->|"BM25 candidates"| G2
+    MCP -->|"semantic candidates"| G2
+    Classifier --> G3
+    Anomaly --> G3
+    G4 <-->|"knowledge query"| MCP
+    G7 <-->|"optional judge query"| MCP
+
+    subgraph Supporting["D · Supporting runtime paths"]
+        Search["POST /search/incidents<br/>structured SQLite search + historical RAG"]
+        RAG["HistoricalIncidentRAG<br/>FTS5 BM25 + Synapt semantic channel + RRF"]
+        Chat["POST /chat<br/>guardrails, optional record lookup,<br/>classifier context, Synapt/local response"]
+        Feedback["POST /feedback<br/>persist analyst verdict; optional trident_feedback"]
+        Review["POST /feedback/review<br/>human accept/reject gate"]
+        Improve["POST /feedback/improve<br/>holdout benchmark and candidate decision"]
+        FeedbackDB[("analyst_feedback<br/>SQLite")]
+        Health["GET /health and /api/synapt/agents<br/>component/configuration status"]
+        Search --> RAG
+        Feedback --> FeedbackDB --> Review --> Improve
+    end
+
+    API --> Search
+    API --> Chat
+    API --> Feedback
+    API --> Review
+    API --> Improve
+    API --> Health
+    Search --> DB
+    RAG --> FTS
+    RAG --> MCP
+    Chat --> DB
+    Chat --> Classifier
+    Chat --> MCP
+    Feedback -.-> MCP
+    Improve --> Candidate["attack_classifier_candidate.joblib"]
+
+    subgraph Evaluation["E · Evaluation and quality evidence"]
+        Cases["40 structured evaluation fixtures"]
+        Adapter["SynaptDeepEvalLLM adapter<br/>OpenRouter · OpenAI/NIM · Anthropic · Synapt"]
+        EvalReport["DeepEval-labelled JSON report"]
+        ModelReports["Classifier/anomaly/improvement reports"]
+        Cases --> Adapter --> EvalReport
+        TrainC --> ModelReports
+        TrainA --> ModelReports
+        Improve --> ModelReports
+    end
+
+    G7 --> Result["Investigation response<br/>classification · risk · anomaly · priority<br/>similar incidents · MITRE · guidance<br/>judge verdict · provenance · limitations"]
+    Search --> Result
+    Chat --> Result
+    Feedback --> Result
+    Improve --> Result
+    Result --> UI --> Decision["Human analyst verification and decision<br/>No automated containment"]
+
+    classDef data fill:#e8f7f5,stroke:#168393,color:#172e45;
+    classDef model fill:#f1edfa,stroke:#7960af,color:#172e45;
+    classDef external fill:#fff5df,stroke:#ad7a1f,color:#172e45;
+    classDef runtime fill:#edf5ff,stroke:#3679bf,color:#172e45;
+    classDef feedback fill:#f8eff9,stroke:#9b5c9e,color:#172e45;
+    class Raw,Ingest,DB,Corpus,FTS,FeedbackDB data;
+    class TrainC,Classifier,TrainA,Anomaly,Candidate,Cases,Adapter,EvalReport,ModelReports model;
+    class Knowledge,KnowledgeIngest,MCP,Synapt,Agents external;
+    class Analyst,UI,API,G1,G2,G3,G4,G5,G6,G7,Search,RAG,Chat,Health,Result,Decision runtime;
+    class Feedback,Review,Improve feedback;

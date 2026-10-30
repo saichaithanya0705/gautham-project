@@ -1,0 +1,13 @@
+flowchart LR
+    Flow["Full flow telemetry"] --> Features["65-feature extraction"]
+    Features --> Classifier["HistGradientBoostingClassifier"]
+    Features --> Isolation["IsolationForest"]
+    Classifier --> Probs["Nine class probabilities"]
+    Probs --> Family["Predicted family + confidence"]
+    Probs --> Risk["Intrusion risk = 1 - P(benign)"]
+    Features --> Baseline["Compare with benign baseline"]
+    Baseline --> Explain["Top five relative deviations"]
+    Isolation --> Anomaly["Raw score → normalized score + threshold flag"]
+    Family --> Policy["Priority policy"]
+    Risk --> Policy
+    Anomaly --> Policy

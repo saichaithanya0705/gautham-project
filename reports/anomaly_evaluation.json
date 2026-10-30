@@ -1,0 +1,11 @@
+{
+  "model_type": "IsolationForest",
+  "training_samples_benign": 20000,
+  "test_samples_benign": 5000,
+  "test_samples_attacks": 5000,
+  "threshold": 0.555058983255717,
+  "benign_false_alarm_rate": 0.032,
+  "attack_detection_rate": 0.5574,
+  "benign_score_mean": 0.3937,
+  "attack_score_mean": 0.5579
+}

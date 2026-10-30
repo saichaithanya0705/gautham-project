@@ -1,0 +1,10 @@
+flowchart LR
+    Request["Query + optional family filter"] --> Structured["SQLite structured search"]
+    Request --> KW["FTS5 BM25 keyword channel"]
+    Request --> Semantic["Synapt semantic channel"]
+    KW --> Fusion["Candidate correlation + RRF"]
+    Semantic --> Fusion
+    Fusion --> Exclude["Exclude current record"]
+    Exclude --> Filter["Apply attack-family filter"]
+    Filter --> Limit["Sort by RRF score and limit"]
+    Limit --> Evidence["Structured rows + historical incident evidence + limitations"]

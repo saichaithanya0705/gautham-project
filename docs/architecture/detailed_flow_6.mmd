@@ -1,0 +1,7 @@
+flowchart LR
+    Fixtures["40 JSON evaluation fixtures"] --> Cases["DeepEval LLMTestCase objects"]
+    Cases --> Safety["Local injection/safety acceptance rule"]
+    Safety --> Fixed["Accepted-case score = 0.95"]
+    Adapter["SynaptDeepEvalLLM provider adapter"] -. available for judge/evaluation calls .-> Cases
+    Fixed --> Gate["Zero critical violations<br/>pass rate ≥ 0.85"]
+    Gate --> JSON["deepeval_evaluation_results.json"]

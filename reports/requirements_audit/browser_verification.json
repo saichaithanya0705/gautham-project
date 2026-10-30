@@ -1,0 +1,34 @@
+{
+  "date_local": "2026-10-12",
+  "service": "http://127.0.0.1:8000/",
+  "service_ownership": "Existing user service reused; no server started or stopped",
+  "desktop": {
+    "viewport_width": 1440,
+    "viewport_height": 1000,
+    "document_client_width": 1425,
+    "document_scroll_width": 1425,
+    "predicted_attack_displayed": "PORT_SCAN",
+    "risk_displayed": "96.2%",
+    "priority_displayed": "P1 - Critical Priority",
+    "live_knowledge_text_rendered": true,
+    "provider_low_confidence_warning_rendered": true,
+    "flow_provenance_displayed": "Portscan-Friday-no-metadata.parquet, row 1444",
+    "static_header_status": ["SQLite: 2,313,810 Flows", "Synapt MCP: Connected"]
+  },
+  "mobile": {
+    "device_screen_width": 390,
+    "configured_height": 844,
+    "document_client_width": 390,
+    "document_scroll_width": 617,
+    "layout_viewport_width": 617,
+    "horizontal_overflow": true,
+    "oversized_elements": ["tabs", "investigate-tab", "investigation card and form controls"]
+  },
+  "inputs_without_programmatic_labels": [
+    "target-record-id", "target-query", "target-family", "chat-input",
+    "search-family", "search-protocol", "search-min-duration", "search-query",
+    "fb-verdict", "fb-rating", "fb-notes"
+  ],
+  "scope": "Initial flow investigation, rendered live knowledge, layout measurements, and programmatic label checks; no complete interaction or keyboard suite",
+  "cleanup": "Audit tab closed; an about:blank browser tab remains; existing service preserved"
+}

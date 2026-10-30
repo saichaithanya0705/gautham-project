@@ -1,0 +1,9 @@
+{
+  "active_model": "models\\attack_classifier.joblib",
+  "baseline_weighted_f1": 0.9943,
+  "candidate_weighted_f1": 0.9943,
+  "accepted_corrections_count": 8,
+  "decision": "promoted",
+  "rationale": "Candidate model verified against holdout set (Weighted F1: 0.9943); incorporated 8 accepted corrections.",
+  "rollback_path": "models\\attack_classifier.joblib"
+}

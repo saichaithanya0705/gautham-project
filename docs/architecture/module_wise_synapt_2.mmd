@@ -1,0 +1,29 @@
+sequenceDiagram
+    participant Triage as flow_triage_agent
+    participant Hist as historical-incident-rag-agent role
+    participant Knowledge as synapt_knowledge_agent
+    participant Intel as incident-knowledge-agent role
+    participant JudgeStage as judge_review_agent
+    participant JudgeRole as judge-review-agent role
+    participant Client as Shared SynaptClient
+    participant Provider as Synapt assist_cyber
+
+    par Similarity path
+        Triage->>Hist: Natural-language incident query
+        Hist->>Client: Logical role handoff
+        Client->>Provider: retrieve(): trident_query preferred, otherwise trident_search
+        Provider-->>Client: Structured content/chunks
+        Client-->>Triage: Semantic candidate text
+    and Knowledge path
+        Knowledge->>Intel: Family-specific procedure question
+        Intel->>Client: Logical role handoff
+        Client->>Provider: retrieve(): trident_query preferred
+        Provider-->>Client: NIST/MITRE/context answer
+        Client-->>Knowledge: Evidence and analysis
+    and Judge path
+        JudgeStage->>JudgeRole: Four-dimension rubric prompt
+        JudgeRole->>Client: Logical role handoff
+        Client->>Provider: retrieve(): trident_query preferred
+        Provider-->>Client: Judge JSON/text
+        Client-->>JudgeStage: Parsed scores or fallback
+    end

@@ -1,0 +1,61 @@
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python environments, bytecode, and packaging output
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# Test, evaluation, lint, and coverage caches
+.pytest_cache/
+.deepeval/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Local datasets, databases, and trained model artifacts
+/archive (1)/
+/data/archive/
+*.parquet
+*.sqlite
+*.sqlite3
+*.db
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite3-shm
+*.sqlite3-wal
+*.db-shm
+*.db-wal
+*.db-journal
+*.sqlite-journal
+*.sqlite3-journal
+/models/
+/data/view_data.html
+
+# Editor, operating system, and temporary files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.log
+*.tmp
+*.swp
+*~
+.tmp/
+.audit_scratch_*/

@@ -1,0 +1,76 @@
+{
+  "discovery": {
+    "ok": true,
+    "seconds": 5.48,
+    "tools": [
+      "trident_get_schema",
+      "trident_search",
+      "trident_find_exact",
+      "trident_cypher",
+      "trident_get_node",
+      "trident_traverse",
+      "trident_get_chunks",
+      "trident_get_procedures",
+      "trident_get_stats",
+      "trident_label_ticket",
+      "trident_episodes",
+      "trident_create_entity",
+      "trident_create_concept",
+      "trident_create_relationship",
+      "trident_query",
+      "trident_feedback",
+      "trident_ingest"
+    ]
+  },
+  "retrieval": {
+    "ok": true,
+    "result_keys": [
+      "content",
+      "structuredContent",
+      "isError"
+    ],
+    "structured_type": "dict",
+    "structured_keys": [
+      "query_id",
+      "task_id",
+      "answer",
+      "reasoning_subgraph",
+      "graph_nodes",
+      "chunks_used",
+      "chunks",
+      "procedures",
+      "provider_id",
+      "confidence_score",
+      "ks_confidence",
+      "ps_confidence",
+      "graph_confidence",
+      "rerank_delta",
+      "resolved_mode",
+      "intent",
+      "stale_nodes_dropped",
+      "nodes_dropped_by_budget",
+      "dead_end_expanded",
+      "trust_signal",
+      "traversal_time",
+      "seed_latency_ms",
+      "retrieval_latency_ms",
+      "avg_traversal_depth",
+      "exclusions",
+      "temporal_context",
+      "episodes_used",
+      "ticket_labels",
+      "ts_confidence",
+      "stores_used",
+      "stores_skipped",
+      "warnings"
+    ],
+    "app_answer_present": true,
+    "content_types": [
+      "text"
+    ],
+    "content_excerpt": [
+      "{\"query_id\":\"b0289d18-6507-4ee8-9b1d-b34f2f95ceb7\",\"task_id\":\"b13b0958-1278-4bcb-aeca-ca0aee3fffbb\",\"answer\":\"SSH brute force attacks are associated with:\\n\\n- Repeated moderate-duration flows\\n- Steady packet counts per exchange\\n- High RST (reset) flag counts, which reflect authentication failures and session teardown\\n\\nIn general, these attacks often show the pattern of repeated login attempts against the SSH service, so investigators should also look for failed authentication logs and possible successful logins after credential spraying. [[ ## completed ## ]]\\n\\nNote: this answer draws on graph data flagged as low-confidence or incompletely connected -- treat it with appropriate caution.\",\"reasoning_subgraph\":{\"nodes\":[{\"node_id\":\"4:9e3e8aa5-399e-4630-b367-c01ccc84d9d4:206431\",\"label\":\"Entity\",\"properties\":{\"coverage\":\"sparse\",\"temporal_source\":\"absent\",\"aliases\":[],\"attributes_json\":\"{\\\"role\\\": \\\"Potential precursor activity\\\"}\",\"confidence\":0.86,\"health\":\"isolated\",\"description\":\"A scanning behavior used as an example of multi-stage attack progression.\",\"label\":\"PortScan\",\"entity_id\":\"64aaa6a6-6cbe-48cc-bb5f-ac9334f899b5\",\"entity_type\":\"Incident\",\"temporal_transaction_time\":"
+    ]
+  },
+  "total_seconds": 11.3
+}

@@ -1,0 +1,66 @@
+flowchart TD
+    %% =========================================================================
+    %% LAYER 1: USER INPUT & GATEWAY
+    %% =========================================================================
+    subgraph L1 ["LAYER 1 · ANALYST INPUT & BACKEND API GATEWAY"]
+        direction LR
+        Analyst(["👤 Security Analyst"]) --> Inp["📥 Input Options<br/>• Record ID (2039912)<br/>• Free Query ('SYN flood')<br/>• Metadata Filters<br/>• Raw Telemetry JSON"]
+        Inp --> UI["🖥️ SOC Copilot Dashboard<br/>http://localhost:8000/<br/>Real-Time Pipeline Status"]
+        UI -->|"HTTP POST /investigate/flow"| API["⚡ FastAPI Microservice<br/>Pydantic Contract Validation<br/>FlowInvestigationRequest"]
+    end
+
+    %% =========================================================================
+    %% LAYER 2: 7-AGENT LANGGRAPH PIPELINE
+    %% =========================================================================
+    subgraph L2 ["LAYER 2 · 7-STAGE SEQUENTIAL LANGGRAPH MULTI-AGENT ORCHESTRATION"]
+        direction LR
+        A1["🛡️ Agent 1: Guardrail<br/>Input Sanitization<br/>Prompt Injection Gate<br/>Domain Relevance"]
+        --> A2["🗂️ Agent 2: Triage & RAG<br/>Exact Record Lookup<br/>404 Guard Enforcement<br/>Hybrid Keyword & Semantic"]
+        --> A3["🧠 Agent 3: ML Analysis<br/>HistGradientBoosting (9 Class)<br/>Risk = 1 - P(benign)<br/>IsolationForest Anomaly"]
+        --> A4["🌐 Agent 4: Knowledge<br/>incident-knowledge-agent<br/>trident_query<br/>trident_get_procedures"]
+        --> A5["⚖️ Agent 5: Prioritization<br/>Deterministic SOC Triage<br/>Risk & Threat Matrix<br/>P1 to P4 Priority Tier"]
+        --> A6["📝 Agent 6: Response Builder<br/>NIST SP 800-61 Playbook<br/>Actionable Checklist<br/>Human-in-Loop Safeguard"]
+        --> A7["🔍 Agent 7: Judge Review<br/>judge-review-agent<br/>Hard Safety Invariant<br/>LLM Judge (NVIDIA NIM)"]
+    end
+
+    API -->|"Validated State"| A1
+
+    %% =========================================================================
+    %% LAYER 3: UNDERPINNING DATA, ML, SYNAPT & JUDGE ENGINES
+    %% (CLEAN DIRECT VERTICAL ALIGNMENT TO CORRESPONDING AGENT)
+    %% =========================================================================
+    subgraph L3 ["LAYER 3 · UNDERPINNING DATA STORES, ML ENGINES, SYNAPT CONTEXT SUBSTRATE & LLM JUDGE"]
+        direction LR
+        E1["🛡️ Guardrail Engine<br/>Regex Token Bounds<br/>Non-Destructive Invariant"]
+        E2[("🗄️ SQLite DB & FTS5<br/>2,313,810 Flows<br/>291 Seeded Summaries<br/>BM25 Keyword Search")]
+        E3["🌲 ML Model Engines<br/>attack_classifier.joblib<br/>anomaly_detector.joblib<br/>Feature Deviations vs Baseline"]
+        E4["🔌 Synapt Context MCP<br/>Provider: assist_cyber<br/>MITRE ATT&CK Graph<br/>trident_query & get_procedures"]
+        E5["⚖️ Policy Matrix<br/>P1: Critical Volumetric<br/>P2: High Attack Scans<br/>P3: Medium Anomalies<br/>P4: Low / Benign"]
+        E6["📋 NIST SP 800-61 DB<br/>Phase 1: Detection/Triage<br/>Phase 2: Containment<br/>Phase 3: Eradication/Recovery"]
+        E7["⚡ LLM Judge & DeepEval<br/>NVIDIA NIM Llama-3.2<br/>DeepEval v4.2.8 (40/40 Pass)<br/>Factuality, Safety, NIST Rubric"]
+    end
+
+    A1 -.-|"Safety Gate"| E1
+    A2 -.-|"Exact & BM25"| E2
+    A3 -.-|"ML Inference"| E3
+    A4 -.-|"MCP Tools"| E4
+    A5 -.-|"Triage Rules"| E5
+    A6 -.-|"Playbooks"| E6
+    A7 -.-|"LLM Audit"| E7
+
+    %% =========================================================================
+    %% LAYER 4: FINAL VERIFIED OUTPUT VISUALIZATION
+    %% =========================================================================
+    subgraph L4 ["LAYER 4 · FINAL VERIFIED OUTPUT & SOC DASHBOARD VISUALIZATION"]
+        direction LR
+        OutJSON["📦 FlowInvestigationResponse<br/>Typed Pydantic JSON<br/>Deterministic + AI Evidence<br/>Complete Audit Provenance"]
+        
+        OutJSON --> C1["📌 Triage Banner<br/>Attack Family<br/>Severity Badge<br/>Priority: P1 to P4"]
+        --> C2["📊 ML Risk Gauge<br/>Predicted Family<br/>Intrusion Risk Score<br/>Anomaly Indicator"]
+        --> C3["📈 Deviations<br/>Top-5 Feature Shifts<br/>Observed vs Benign Baseline<br/>Magnitude Multipliers"]
+        --> C4["🎯 MITRE & RAG<br/>MITRE ATT&CK TTPs<br/>RRF-Fused Top Similar<br/>Historical Incidents"]
+        --> C5["📋 Action Playbook<br/>NIST Containment Steps<br/>Target Host Audit<br/>Human Approval Gate"]
+        --> C6["⚖️ Judge Quality Card<br/>Pass Verdict: TRUE<br/>Safety: 100% | NIST: 85%<br/>LLM Critique Box"]
+    end
+
+    A7 ==>|"Verified State Output"| OutJSON

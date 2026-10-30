@@ -1,0 +1,7 @@
+flowchart LR
+    Dataset["CIC-IDS2017 Parquet"] --> Audit["Audit + normalize + label map"] --> SQLite[("SQLite flows")]
+    SQLite --> TrainC["Extract 65 features + train classifier"] --> Classifier["attack_classifier.joblib"]
+    SQLite --> TrainA["Benign-only anomaly training"] --> Anomaly["anomaly_detector.joblib"]
+    SQLite --> Seed["Seed 291 incident summaries"] --> FTS["FTS5 index"]
+    Knowledge["MITRE · NIST · schema · summaries"] --> Ingest["trident_ingest"] --> Synapt[("Synapt assist_cyber")]
+    Feedback["Human-reviewed feedback"] --> Benchmark["Holdout benchmark"] --> Candidate["candidate bundle + report"]

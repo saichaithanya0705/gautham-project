@@ -1,0 +1,1 @@
+"""Synapt MCP integration boundary."""

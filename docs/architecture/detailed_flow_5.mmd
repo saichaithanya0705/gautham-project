@@ -1,0 +1,11 @@
+flowchart LR
+    Analyst["Analyst rating, verdict,<br/>notes, optional corrected family"] --> Pending[("pending_review")]
+    Pending --> Review{"Human review gate"}
+    Review -->|reject| Rejected["rejected"]
+    Review -->|accept| Accepted["accepted"]
+    Accepted --> Improve["POST /feedback/improve"]
+    Improve --> Holdout["Random 2,000-row SQLite holdout"]
+    Holdout --> Baseline["Evaluate active classifier"]
+    Baseline --> Candidate["Write candidate bundle"]
+    Candidate --> Report["Benchmark JSON + promotion/retention decision"]
+    Analyst -. optional .-> SynaptFeedback["trident_feedback"]

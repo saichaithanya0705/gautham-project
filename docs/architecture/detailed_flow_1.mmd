@@ -1,0 +1,86 @@
+flowchart TB
+    subgraph L1["Layer 1 · Analyst Experience"]
+        Analyst["SOC analyst"]
+        Dashboard["Web dashboard<br/>Investigation · incident search · chat · feedback"]
+        Analyst --> Dashboard
+    end
+
+    subgraph L2["Layer 2 · API and Contract Boundary"]
+        FastAPI["FastAPI application"]
+        Schemas["Pydantic request/response schemas<br/>types · bounds · required-field rules"]
+        Routes["GET / · GET /health · GET /api/synapt/agents<br/>POST /search/incidents · /investigate/flow · /chat<br/>POST /feedback · /feedback/review · /feedback/improve"]
+        FastAPI --> Schemas
+        FastAPI --> Routes
+    end
+
+    subgraph L3["Layer 3 · Orchestration and Safety"]
+        Graph["Compiled LangGraph StateGraph"]
+        Guard["1. guardrail_agent"]
+        Triage["2. flow_triage_agent"]
+        MLAgent["3. ml_analysis_agent"]
+        KnowledgeAgent["4. synapt_knowledge_agent"]
+        PriorityAgent["5. prioritization_agent"]
+        ResponseAgent["6. response_recommendation_agent"]
+        JudgeAgent["7. judge_review_agent"]
+        Graph --> Guard --> Triage --> MLAgent --> KnowledgeAgent --> PriorityAgent --> ResponseAgent --> JudgeAgent
+    end
+
+    subgraph L4["Layer 4 · Intelligence Services"]
+        RAG["HistoricalIncidentRAG<br/>BM25 + Synapt channel + RRF"]
+        Predictor["IntrusionPredictor<br/>family · confidence · risk · deviations"]
+        Anomaly["AnomalyDetector<br/>IsolationForest score + threshold"]
+        Policy["Priority policy<br/>deterministic P1–P4 rules"]
+        Judge["ResponseJudge<br/>hard safety invariant + four-part rubric"]
+        Chat["ChatService<br/>guarded conversational analysis"]
+        Improve["ContinuousImprovementEngine<br/>review gate + holdout benchmark"]
+    end
+
+    subgraph L5["Layer 5 · Evidence, Models, and State"]
+        Flows[("SQLite flows<br/>2,313,810 rows")]
+        IncidentCorpus[("291 historical incident summaries<br/>FTS5 index")]
+        Feedback[("analyst_feedback")]
+        Classifier["attack_classifier.joblib<br/>HistGradientBoosting · 65 features · 9 families"]
+        AnomalyModel["anomaly_detector.joblib<br/>IsolationForest"]
+        Candidate["attack_classifier_candidate.joblib"]
+        Reports["JSON evaluation and benchmark reports"]
+    end
+
+    subgraph L6["Layer 6 · External Context and Evaluation"]
+        SynaptClient["SynaptClient<br/>TLS · authentication · JSON-RPC · tool discovery"]
+        Synapt[("Synapt Context Substrate<br/>MITRE · NIST · historical context")]
+        EvalAdapter["SynaptDeepEvalLLM adapter<br/>OpenRouter · OpenAI/NIM · Anthropic · Synapt"]
+        Fixtures["40 structured evaluation fixtures"]
+        SynaptClient <-->|"retrieve · ingest · feedback"| Synapt
+        Fixtures --> EvalAdapter --> Reports
+    end
+
+    Dashboard <-->|"HTTP / JSON"| FastAPI
+    Routes -->|"investigate"| Graph
+    Routes -->|"search"| RAG
+    Routes -->|"chat"| Chat
+    Routes -->|"feedback/review/improve"| Improve
+
+    Triage --> RAG
+    Triage --> Flows
+    RAG --> IncidentCorpus
+    RAG --> SynaptClient
+    MLAgent --> Predictor
+    MLAgent --> Anomaly
+    Predictor --> Classifier
+    Anomaly --> AnomalyModel
+    KnowledgeAgent --> SynaptClient
+    PriorityAgent --> Policy
+    JudgeAgent --> Judge
+    Judge --> SynaptClient
+    Chat --> Flows
+    Chat --> Predictor
+    Chat --> SynaptClient
+    Improve --> Feedback
+    Improve --> Classifier
+    Improve --> Candidate
+    Improve --> Reports
+
+    JudgeAgent --> Result["Structured incident result"]
+    Result --> Dashboard
+    Dashboard --> HumanDecision["Human verification and response decision"]
+    HumanDecision -->|"rating, verdict, optional correction"| Improve

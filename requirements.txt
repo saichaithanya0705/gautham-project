@@ -1,0 +1,13 @@
+numpy
+pandas
+pyarrow
+fastapi
+uvicorn[standard]
+langgraph
+pydantic-settings
+httpx
+scikit-learn
+joblib
+deepeval
+pytest
+pytest-asyncio

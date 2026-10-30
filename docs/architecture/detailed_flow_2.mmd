@@ -1,0 +1,72 @@
+sequenceDiagram
+    autonumber
+    actor Analyst
+    participant UI as Dashboard
+    participant API as FastAPI + Pydantic
+    participant Guard as Guardrail Agent
+    participant Triage as Flow Triage Agent
+    participant SQL as SQLite / FTS5
+    participant RAG as Historical RAG
+    participant ML as Classifier + Anomaly
+    participant Context as Synapt Knowledge
+    participant Policy as Priority Policy
+    participant Builder as Response Builder
+    participant Judge as Safety + LLM Judge
+
+    Analyst->>UI: Enter record ID/query/raw flow
+    UI->>API: POST /investigate/flow
+    API->>API: Validate types, bounds, non-empty request
+    alt schema invalid
+        API-->>UI: HTTP 422 validation error
+    else schema valid
+        API->>Guard: Validated request
+        Guard->>Guard: Injection, action, relevance checks
+        alt guardrail rejected
+            Guard->>Context: Do not send untrusted text
+            Context-->>Builder: Investigation halted message
+        else guardrail passed
+            Guard->>Triage: Approved request
+            alt record_id supplied
+                Triage->>SQL: SELECT full flow by record_id
+                alt record absent
+                    SQL-->>API: target_not_found
+                    API-->>UI: HTTP 404
+                else record found
+                    SQL-->>Triage: Full telemetry + provenance
+                end
+            else raw flow supplied
+                Triage->>Triage: Validate finite/non-negative telemetry
+            else query-only
+                Triage->>Triage: Mark telemetry unassessed
+            end
+            Triage->>RAG: Query, family filter, target exclusion
+            par keyword channel
+                RAG->>SQL: FTS5 BM25 query
+                SQL-->>RAG: Ranked keyword candidates
+            and semantic channel
+                RAG->>Context: Similar incident query
+                Context-->>RAG: Semantic text/chunks or empty result
+            end
+            RAG->>RAG: Reciprocal-rank fusion and limit
+            RAG-->>ML: Target flow + similar incidents
+            opt target telemetry exists
+                ML->>ML: Classify family/confidence/risk
+                ML->>ML: Explain top deviations
+                ML->>ML: Score anomaly
+            end
+            ML->>Context: Sanitized family-specific knowledge query
+            Context-->>Policy: Knowledge answer or local fallback
+            Policy->>Policy: Apply deterministic P1-P4 rules
+            Policy->>Builder: Priority, rationale, missing context
+            Builder->>Builder: Assemble steps, recommendations, provenance, limits
+            Builder->>Judge: Candidate package + observed evidence
+            Judge->>Judge: Hard automated-action safety check
+            opt evaluator provider available
+                Judge->>Context: Four-dimension rubric prompt
+                Context-->>Judge: Structured scores/critique
+            end
+            Judge-->>API: Final workflow state
+            API-->>UI: FlowInvestigationResponse
+            UI-->>Analyst: Evidence and human decision controls
+        end
+    end

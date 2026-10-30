@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSentinel AI - SOC Incident Response Copilot & Telemetry Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #070B14;
+            --bg-surface: #0D1424;
+            --bg-card: rgba(16, 24, 40, 0.75);
+            --bg-card-hover: rgba(22, 34, 56, 0.85);
+            --bg-subtle: #152033;
+            --border-subtle: rgba(70, 95, 133, 0.25);
+            --border-glow: rgba(56, 189, 248, 0.35);
+            --text-main: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --text-muted: #8494A8;
+            --accent-blue: #38BDF8;
+            --accent-blue-deep: #0284C7;
+            --accent-cyan: #06B6D4;
+            --accent-emerald: #10B981;
+            --accent-amber: #F59E0B;
+            --accent-rose: #F43F5E;
+            --accent-violet: #8B5CF6;
+            --gradient-primary: linear-gradient(135deg, #0284C7 0%, #06B6D4 100%);
+            --gradient-card: linear-gradient(180deg, rgba(20, 31, 51, 0.6) 0%, rgba(13, 20, 36, 0.8) 100%);
+            --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+            --shadow-glow: 0 0 24px -4px rgba(56, 189, 248, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-base);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.04) 0%, transparent 60%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Glassmorphic Header */
+        header {
+            background: rgba(10, 16, 28, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-badge {
+            background: var(--gradient-primary);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: white;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+            letter-spacing: -0.04em;
+        }
+
+        .brand-title h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand-title .version-tag {
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent-blue);
+            font-size: 0.7rem;
+            padding: 0.1rem 0.45rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .brand-title p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .system-status-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            font-size: 0.82rem;
+            flex-wrap: wrap;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            background: rgba(16, 24, 40, 0.8);
+            border: 1px solid var(--border-subtle);
+            font-size: 0.78rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .status-pill:hover {
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .status-dot.emerald { background: #10B981; }
+        .status-dot.emerald::after { background: rgba(16, 185, 129, 0.4); }
+
+        .status-dot.cyan { background: #06B6D4; }
+        .status-dot.cyan::after { background: rgba(6, 182, 212, 0.4); }
+
+        .status-dot.violet { background: #8B5CF6; }
+        .status-dot.violet::after { background: rgba(139, 92, 246, 0.4); }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.6); opacity: 0; }
+            100% { transform: scale(0.95); opacity: 0; }
+        }
+
+        /* App Layout with Left Taskbar / Sidebar */
+        .app-layout {
+            display: flex;
+            flex: 1;
+            width: 100%;
+            min-height: calc(100vh - 65px);
+        }
+
+        .sidebar-taskbar {
+            width: 320px;
+            min-width: 320px;
+            background: rgba(10, 16, 28, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-right: 1px solid var(--border-subtle);
+            padding: 1.5rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+            position: sticky;
+            top: 65px;
+            height: calc(100vh - 65px);
+            overflow-y: auto;
+            z-index: 40;
+        }
+
+        .sidebar-header {
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .sidebar-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .sidebar-section-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .nav-module-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(70, 95, 133, 0.2);
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            width: 100%;
+            position: relative;
+        }
+
+        .nav-module-btn:hover {
+            background: rgba(56, 189, 248, 0.08);
+            border-color: rgba(56, 189, 248, 0.3);
+            color: white;
+            transform: translateX(2px);
+        }
+
+        .nav-module-btn.active {
+            background: rgba(56, 189, 248, 0.14);
+            border-color: var(--accent-blue);
+            color: var(--text-main);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.2);
+        }
+
+        .nav-module-btn.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 15%;
+            bottom: 15%;
+            width: 3.5px;
+            background: var(--accent-blue);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .nav-module-badge {
+            margin-left: auto;
+            font-size: 0.68rem;
+            padding: 0.15rem 0.45rem;
+            border-radius: 9999px;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+
+        /* Preset Card in Sidebar */
+        .preset-box {
+            background: rgba(16, 24, 40, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 12px;
+            padding: 1.1rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar-hint {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-preset-select {
+            width: 100%;
+            background: rgba(10, 16, 28, 0.95);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            color: var(--text-main);
+            border-radius: 8px;
+            padding: 0.65rem 0.75rem;
+            font-size: 0.82rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-preset-select:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-preset-action {
+            width: 100%;
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            padding: 0.65rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+            margin-top: 0.45rem;
+        }
+
+        .btn-preset-action:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        /* Status Box in Sidebar */
+        .system-status-box {
+            background: rgba(14, 22, 38, 0.6);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+        }
+
+        .sidebar-status-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            margin-top: 0.35rem;
+        }
+
+        .sidebar-status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.76rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .sidebar-status-item .status-label {
+            color: var(--text-secondary);
+            flex: 1;
+        }
+
+        .sidebar-status-item .status-val {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .sidebar-footer-note {
+            margin-top: auto;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            display: flex;
+            gap: 0.45rem;
+            align-items: flex-start;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Synapt Agents Box in Sidebar */
+        .synapt-agents-box {
+            background: rgba(6, 182, 212, 0.04);
+            border: 1px solid rgba(6, 182, 212, 0.22);
+            border-radius: 12px;
+            padding: 0.85rem 0.95rem;
+        }
+
+        .synapt-badge-count {
+            margin-left: auto;
+            font-size: 0.65rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .sidebar-agent-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            margin-top: 0.5rem;
+        }
+
+        .sidebar-agent-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 0.55rem 0.65rem;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-agent-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            background: rgba(15, 23, 42, 0.95);
+            transform: translateY(-1px);
+        }
+
+        .agent-card-top {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .agent-icon {
+            font-size: 0.95rem;
+        }
+
+        .agent-meta {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .agent-name {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #E2E8F0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .agent-role {
+            font-size: 0.63rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .agent-pill {
+            font-size: 0.6rem;
+            padding: 0.1rem 0.35rem;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .agent-pill.live {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34D399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .agent-tools-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-top: 0.4rem;
+            align-items: center;
+        }
+
+        .agent-tool-tag {
+            font-size: 0.61rem;
+            padding: 0.08rem 0.32rem;
+            border-radius: 3px;
+            background: rgba(6, 182, 212, 0.1);
+            color: #67E8F9;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .agent-secret-tag {
+            font-size: 0.6rem;
+            padding: 0.08rem 0.35rem;
+            border-radius: 3px;
+            background: rgba(139, 92, 246, 0.12);
+            color: #C4B5FD;
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            font-family: 'JetBrains Mono', monospace;
+            margin-left: auto;
+        }
+
+        /* Workspace Main Container */
+        .workspace-main {
+            flex: 1;
+            padding: 1.5rem 2rem;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 1600px;
+        }
+
+        /* Multi-Agent Orchestration Pipeline Breadcrumb */
+        .agent-pipeline-bar {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow-x: auto;
+            gap: 0.75rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .pipeline-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+        }
+
+        .pipeline-steps {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+        }
+
+        .pipeline-step {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .pipeline-step.active {
+            background: rgba(56, 189, 248, 0.12);
+            border-color: rgba(56, 189, 248, 0.4);
+            color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .pipeline-step.synapt-node {
+            border-color: rgba(6, 182, 212, 0.3);
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.08);
+        }
+
+        .pipeline-arrow {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+        }
+
+        /* Layout Grid */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 1040px) {
+            .app-layout {
+                flex-direction: column;
+            }
+            .sidebar-taskbar {
+                width: 100%;
+                min-width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+        }
+
+        /* Premium Card Component */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-card);
+            transition: border-color 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(70, 95, 133, 0.4);
+        }
+
+        .card-header {
+            margin-bottom: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 0.75rem;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-main);
+            letter-spacing: -0.01em;
+        }
+
+        .form-group {
+            margin-bottom: 1.15rem;
+        }
+
+        .form-group label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.45rem;
+        }
+
+        .form-group label span.hint {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 0.75rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            background: rgba(9, 14, 26, 0.85);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 0.75rem 0.95rem;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
+            background: rgba(12, 19, 36, 0.95);
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.85rem 1.4rem;
+            font-weight: 600;
+            font-size: 0.92rem;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 18px rgba(2, 132, 199, 0.35);
+        }
+
+        .btn:hover {
+            filter: brightness(1.12);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(6, 182, 212, 0.45);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: rgba(26, 38, 61, 0.6);
+            box-shadow: none;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(35, 52, 82, 0.85);
+            color: white;
+            border-color: rgba(70, 95, 133, 0.6);
+            box-shadow: none;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .badge-critical { background: rgba(244, 63, 94, 0.15); color: #FB7185; border: 1px solid rgba(244, 63, 94, 0.35); }
+        .badge-high { background: rgba(245, 158, 11, 0.15); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.35); }
+        .badge-medium { background: rgba(56, 189, 248, 0.15); color: #7DD3FC; border: 1px solid rgba(56, 189, 248, 0.35); }
+        .badge-low { background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.35); }
+        .badge-violet { background: rgba(139, 92, 246, 0.15); color: #C4B5FD; border: 1px solid rgba(139, 92, 246, 0.35); }
+
+        /* Metrics Bar */
+        .metric-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-blue);
+        }
+
+        .metric-card.card-risk::before { background: var(--accent-rose); }
+        .metric-card.card-priority::before { background: var(--accent-amber); }
+        .metric-card.card-guardrail::before { background: var(--accent-emerald); }
+
+        .metric-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+        }
+
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin: 0.4rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: -0.02em;
+        }
+
+        .metric-subtext {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Progress Bar */
+        .progress-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 0.4rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 999px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            background: rgba(11, 17, 31, 0.6);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        th {
+            background: rgba(18, 27, 46, 0.9);
+            color: var(--text-muted);
+            padding: 0.85rem 1.15rem;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        td {
+            padding: 0.85rem 1.15rem;
+            border-bottom: 1px solid rgba(70, 95, 133, 0.15);
+            color: var(--text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(56, 189, 248, 0.04);
+            color: var(--text-main);
+        }
+
+        /* Prose / Output Boxes */
+        .prose-box {
+            background: rgba(9, 14, 26, 0.85);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 1.4rem;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: #E2E8F0;
+            white-space: pre-line;
+            font-family: inherit;
+        }
+
+        .prose-box.synapt-box {
+            border-left: 3px solid var(--accent-cyan);
+            background: linear-gradient(180deg, rgba(6, 182, 212, 0.04) 0%, rgba(9, 14, 26, 0.9) 100%);
+        }
+
+        /* Checkable Action Checklist for Analysts */
+        .action-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .action-item {
+            background: rgba(14, 22, 38, 0.7);
+            border: 1px solid var(--border-subtle);
+            border-left: 3px solid var(--accent-blue);
+            padding: 0.75rem 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.86rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .action-item:hover {
+            background: rgba(20, 31, 54, 0.9);
+            border-color: rgba(70, 95, 133, 0.4);
+        }
+
+        .action-item.containment {
+            border-left-color: var(--accent-amber);
+        }
+
+        .action-item input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.2rem;
+            cursor: pointer;
+            accent-color: var(--accent-blue);
+        }
+
+        .action-item.checked {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+
+        /* Tags */
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.65rem;
+        }
+
+        .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: #7DD3FC;
+            padding: 0.3rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            font-family: 'JetBrains Mono', monospace;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: var(--accent-blue);
+        }
+
+        /* Chat Interface */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 720px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .chat-header {
+            padding: 1.15rem 1.6rem;
+            background: rgba(18, 27, 46, 0.75);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.35rem;
+        }
+
+        .chat-bubble {
+            max-width: 82%;
+            padding: 1.1rem 1.4rem;
+            border-radius: 14px;
+            font-size: 0.92rem;
+            line-height: 1.65;
+            position: relative;
+        }
+
+        .chat-bubble.user {
+            align-self: flex-end;
+            background: var(--gradient-primary);
+            color: #FFFFFF;
+            border-bottom-right-radius: 3px;
+            box-shadow: 0 4px 16px rgba(2, 132, 199, 0.3);
+        }
+
+        .chat-bubble.bot {
+            align-self: flex-start;
+            background: rgba(14, 22, 38, 0.95);
+            border: 1px solid var(--border-subtle);
+            color: #E2E8F0;
+            border-bottom-left-radius: 3px;
+            white-space: pre-line;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .chat-input-bar {
+            padding: 1.15rem 1.6rem;
+            background: rgba(11, 17, 31, 0.95);
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            gap: 0.85rem;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0.85rem 1.6rem 0.35rem 1.6rem;
+            background: rgba(8, 12, 22, 0.9);
+            border-bottom: 1px solid rgba(70, 95, 133, 0.2);
+        }
+
+        .chip {
+            background: rgba(22, 33, 54, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            color: #93C5FD;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .chip:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: var(--accent-blue);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Modern Native Dialog Styling */
+        dialog {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            color: var(--text-main);
+            padding: 2rem;
+            max-width: 520px;
+            width: 90%;
+            margin: auto;
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7);
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Toast Notifications */
+        #toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 9999;
+        }
+
+        .toast {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--accent-blue);
+            color: white;
+            padding: 0.85rem 1.35rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.86rem;
+            animation: slide-in 0.3s ease;
+        }
+
+        @keyframes slide-in {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <header>
+        <div class="brand">
+            <div class="brand-badge">CS</div>
+            <div class="brand-title">
+                <h1>CyberSentinel Copilot <span class="version-tag">v1.0 ACTIVE</span></h1>
+                <p>Autonomous Incident Investigation & Telemetry Grounding with Synapt Context Substrate</p>
+            </div>
+        </div>
+
+        <div class="system-status-bar">
+            <div class="status-pill" id="sqlite-status">
+                <span class="status-dot emerald"></span>
+                <span>SQLite: 2,313,810 Flows</span>
+            </div>
+            <div class="status-pill" id="synapt-status">
+                <span class="status-dot cyan"></span>
+                <span id="synapt-status-text">Synapt MCP: Connected</span>
+            </div>
+            <div class="status-pill" id="ml-status">
+                <span class="status-dot violet"></span>
+                <span>HistGradBoost: 1.00 F1</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        <!-- Left Taskbar / Sidebar -->
+        <aside class="sidebar-taskbar" id="sidebar-taskbar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">
+                    <span style="font-size: 1.1rem;">🛡️</span>
+                    <span>SOC WORKSPACE</span>
+                </div>
+                <div class="sidebar-subtitle">Operational Module Task Manager</div>
+            </div>
+
+            <!-- Target Flow Quick Presets Dropdown in Taskbar (Top Position) -->
+            <div class="sidebar-section preset-box">
+                <div class="sidebar-section-title" style="color: var(--accent-blue);">
+                    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <span>TARGET FLOW PRESETS</span>
+                </div>
+                <p class="sidebar-hint">Select a benchmark flow from CIC-IDS2017 to instantly populate parameters:</p>
+                
+                <select id="sidebar-preset-select" class="sidebar-preset-select" onchange="handlePresetSelect(this.value)">
+                    <option value="">-- Choose Quick Preset Flow --</option>
+                    <option value="2039912">🎯 PortScan Recon (#2039912)</option>
+                    <option value="500000">💥 Volumetric DoS Hulk (#500000)</option>
+                    <option value="1200000">🔐 SSH Brute Force (#1200000)</option>
+                    <option value="850000">🌐 Web Attack SQLi (#850000)</option>
+                    <option value="2100000">🤖 Botnet Infiltration (#2100000)</option>
+                    <option value="100000">🛡️ Benign Baseline (#100000)</option>
+                </select>
+
+                <button class="btn-preset-action" onclick="triggerSelectedPreset()">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Analyze Preset Flow
+                </button>
+            </div>
+
+            <!-- Modules / Task Manager Navigation List -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">
+                    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+                    <span>INCIDENT MODULES</span>
+                </div>
+                <nav class="sidebar-nav">
+                    <button class="nav-module-btn active" id="nav-btn-investigate" onclick="switchTab('investigate-tab', this)">
+                        <svg width="17" height="17" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        <span class="nav-text">AI Flow Investigation</span>
+                        <span class="nav-module-badge">Active</span>
+                    </button>
+                    <button class="nav-module-btn" id="nav-btn-chat" onclick="switchTab('chat-tab', this)">
+                        <svg width="17" height="17" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                        <span class="nav-text">SOC Copilot Chat</span>
+                        <span class="nav-module-badge" style="background:rgba(6,182,212,0.15); color:var(--accent-cyan);">Copilot</span>
+                    </button>
+                    <button class="nav-module-btn" id="nav-btn-explorer" onclick="switchTab('explorer-tab', this)">
+                        <svg width="17" height="17" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        <span class="nav-text">Historical Incident Explorer</span>
+                        <span class="nav-module-badge" style="background:rgba(139,92,246,0.15); color:var(--accent-violet);">2.3M</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Synapt Onboarded Read-Only Agents Section -->
+            <div class="sidebar-section synapt-agents-box">
+                <div class="sidebar-section-title" style="color:var(--accent-cyan);">
+                    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    <span>SYNAPT READ-ONLY AGENTS</span>
+                    <span class="synapt-badge-count" id="synapt-agent-count-badge">3 Active</span>
+                </div>
+                <div class="sidebar-agent-cards" id="sidebar-synapt-agent-cards">
+                    <!-- Agent 1: incident-knowledge-agent -->
+                    <div class="sidebar-agent-card">
+                        <div class="agent-card-top">
+                            <span class="agent-icon">🧠</span>
+                            <div class="agent-meta">
+                                <div class="agent-name">incident-knowledge-agent</div>
+                                <div class="agent-role">Threat Intel & NIST SOP</div>
+                            </div>
+                            <span class="agent-pill live">Onboarded</span>
+                        </div>
+                        <div class="agent-tools-row">
+                            <span class="agent-tool-tag">trident_query</span>
+                            <span class="agent-tool-tag">trident_get_procedures</span>
+                            <span class="agent-secret-tag" id="secret-tag-knowledge" title="Configured in .env">sec: d5fbf1...8de4</span>
+                        </div>
+                    </div>
+
+                    <!-- Agent 2: historical-incident-rag-agent -->
+                    <div class="sidebar-agent-card">
+                        <div class="agent-card-top">
+                            <span class="agent-icon">🔍</span>
+                            <div class="agent-meta">
+                                <div class="agent-name">historical-incident-rag-agent</div>
+                                <div class="agent-role">Semantic Incident RAG (291)</div>
+                            </div>
+                            <span class="agent-pill live">Onboarded</span>
+                        </div>
+                        <div class="agent-tools-row">
+                            <span class="agent-tool-tag">trident_search</span>
+                            <span class="agent-tool-tag">trident_query</span>
+                            <span class="agent-secret-tag" id="secret-tag-rag" title="Configured in .env">sec: 40280b...8181</span>
+                        </div>
+                    </div>
+
+                    <!-- Agent 3: judge-review-agent -->
+                    <div class="sidebar-agent-card">
+                        <div class="agent-card-top">
+                            <span class="agent-icon">⚖️</span>
+                            <div class="agent-meta">
+                                <div class="agent-name">judge-review-agent</div>
+                                <div class="agent-role">Safety & Grounding Rubrics</div>
+                            </div>
+                            <span class="agent-pill live">Onboarded</span>
+                        </div>
+                        <div class="agent-tools-row">
+                            <span class="agent-tool-tag">trident_query</span>
+                            <span class="agent-secret-tag" id="secret-tag-judge" title="Configured in .env">sec: 0d3ff0...e7b9</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Engine Substrate Status in Sidebar -->
+            <div class="sidebar-section system-status-box">
+                <div class="sidebar-section-title">
+                    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    <span>ENGINE SUBSTRATE</span>
+                </div>
+                <div class="sidebar-status-list">
+                    <div class="sidebar-status-item">
+                        <span class="status-dot emerald"></span>
+                        <span class="status-label">SQLite Telemetry</span>
+                        <span class="status-val">2.31M Flows</span>
+                    </div>
+                    <div class="sidebar-status-item">
+                        <span class="status-dot cyan"></span>
+                        <span class="status-label">Synapt MCP</span>
+                        <span class="status-val" id="sidebar-synapt-val">Connected</span>
+                    </div>
+                    <div class="sidebar-status-item">
+                        <span class="status-dot violet"></span>
+                        <span class="status-label">Classifier F1</span>
+                        <span class="status-val">99.58%</span>
+                    </div>
+                    <div class="sidebar-status-item">
+                        <span class="status-dot emerald"></span>
+                        <span class="status-label">Guardrail Shield</span>
+                        <span class="status-val">Active</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-footer-note">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                <span>Read-only decision support. Containment actions require verified human authorization.</span>
+            </div>
+        </aside>
+
+        <!-- Right Workspace Main Container -->
+        <main class="workspace-main">
+            <!-- Multi-Agent Orchestration Pipeline Visualizer (7-Node Choreography) -->
+            <div class="agent-pipeline-bar">
+                <div class="pipeline-label">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    LangGraph 7-Agent Pipeline
+                </div>
+                <div class="pipeline-steps">
+                    <div class="pipeline-step active" id="pipe-guard" title="Local Gatekeeper Agent (Write/Reject)">🛡️ 1. Guardrail</div>
+                    <div class="pipeline-arrow">➔</div>
+                    <div class="pipeline-step synapt-node active" id="pipe-triage" title="Synapt Onboarded Read-Only Agent (historical-incident-rag-agent)">🔍 2. Flow Triage ⚡</div>
+                    <div class="pipeline-arrow">➔</div>
+                    <div class="pipeline-step active" id="pipe-ml" title="Local Scikit-Learn Model (99.58% F1)">🤖 3. ML Inference</div>
+                    <div class="pipeline-arrow">➔</div>
+                    <div class="pipeline-step synapt-node active" id="pipe-synapt" title="Synapt Onboarded Read-Only Agent (incident-knowledge-agent)">🧠 4. Synapt Knowledge ⚡</div>
+                    <div class="pipeline-arrow">➔</div>
+                    <div class="pipeline-step active" id="pipe-priority" title="Local Operational Prioritization (P1-P4 SLA)">⚡ 5. Prioritize</div>
+                    <div class="pipeline-arrow">➔</div>
+                    <div class="pipeline-step active" id="pipe-response" title="Local NIST SP 800-61 Playbook Synthesizer">📋 6. NIST SOP</div>
+                    <div class="pipeline-arrow">➔</div>
+                    <div class="pipeline-step synapt-node active" id="pipe-judge" title="Synapt Onboarded Read-Only Agent (judge-review-agent)">⚖️ 7. Judge Review ⚡</div>
+                </div>
+            </div>
+
+        <!-- TAB 1: Investigation View -->
+        <section id="investigate-tab" class="grid-layout">
+            <!-- Left Parameter Configuration Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        Flow Triage Parameters
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        Target SQLite Record ID
+                        <span class="hint">Range: 1 – 2,313,810</span>
+                    </label>
+                    <input type="number" id="target-record-id" placeholder="e.g. 2039912" value="2039912">
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        Analyst Investigation Hypothesis / Query
+                        <span class="hint">Context for Synapt</span>
+                    </label>
+                    <textarea id="target-query" rows="3" placeholder="Describe suspicious activity...">Examine potential reconnaissance probing and service scan indicators</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        Attack Family Constraint
+                        <span class="hint">Optional override</span>
+                    </label>
+                    <select id="target-family">
+                        <option value="">Auto-Detect via ML Classifier (Recommended)</option>
+                        <option value="port_scan">Port Scan</option>
+                        <option value="dos">Denial of Service (DoS)</option>
+                        <option value="ddos">Distributed DoS (DDoS)</option>
+                        <option value="brute_force">Brute Force (SSH/FTP)</option>
+                        <option value="web_attack">Web Attack (SQLi/XSS)</option>
+                        <option value="botnet">Botnet C2</option>
+                        <option value="benign">Benign Baseline</option>
+                    </select>
+                </div>
+
+                <button class="btn" id="btn-run-investigate" onclick="runInvestigation()">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Execute AI Multi-Agent Triage
+                </button>
+
+                <div style="margin-top: 1rem;">
+                    <button class="btn btn-secondary" onclick="openFeedbackModal()">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                        Submit Analyst Feedback
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Results & Insights Container -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <!-- Hero Metrics Dashboard -->
+                <div class="metric-cards-grid">
+                    <!-- Attack Family -->
+                    <div class="metric-card">
+                        <div class="metric-label">Predicted Attack Family</div>
+                        <div class="metric-value" id="res-attack" style="color:var(--accent-blue);">-</div>
+                        <div class="metric-subtext">
+                            <span class="badge badge-medium" id="res-confidence">Confidence: -</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="conf-bar" style="width: 0%; background: var(--accent-blue);"></div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Score -->
+                    <div class="metric-card card-risk">
+                        <div class="metric-label">Intrusion Risk Score</div>
+                        <div class="metric-value" id="res-risk" style="color:var(--accent-rose);">-</div>
+                        <div class="metric-subtext">
+                            <span class="badge badge-critical" id="res-severity">Severity: -</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="risk-bar" style="width: 0%; background: var(--accent-rose);"></div>
+                        </div>
+                    </div>
+
+                    <!-- Triage Priority -->
+                    <div class="metric-card card-priority">
+                        <div class="metric-label">Triage Priority</div>
+                        <div class="metric-value" id="res-priority" style="font-size: 1.35rem; color:var(--accent-amber);">-</div>
+                        <div class="metric-subtext">
+                            <span class="badge badge-high" id="res-action-status">Human-in-Loop</span>
+                        </div>
+                    </div>
+
+                    <!-- Guardrail Status -->
+                    <div class="metric-card card-guardrail">
+                        <div class="metric-label">Input Guardrail</div>
+                        <div class="metric-value" id="res-guardrail" style="font-size: 1.35rem; color:var(--accent-emerald);">PASSED</div>
+                        <div class="metric-subtext">
+                            <span>Injection Shield Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explainability & Top Deviations Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                            Top Telemetry Feature Deviations (Explainability Attribution)
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Engineered Telemetry Feature</th>
+                                    <th>Observed Flow Value</th>
+                                    <th>Benign Baseline Mean</th>
+                                    <th>Relative Anomaly Magnitude</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attributions-table">
+                                <tr><td colspan="4" style="text-align:center; color:var(--text-muted); padding: 2rem;">Run an investigation to view real-time explainability attributions.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="margin-top: 1.25rem;">
+                        <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700; text-transform:uppercase; letter-spacing:0.05em;">Associated MITRE ATT&CK Tactics & Techniques:</span>
+                        <div class="tag-list" id="mitre-tags"></div>
+                    </div>
+                </div>
+
+                <!-- Synapt Context Substrate Reasoning Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title" style="color:var(--accent-cyan);">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                            Synapt Knowledge Substrate Reasoning (MCP Grounding)
+                        </div>
+                        <span class="badge badge-low" style="background:rgba(6,182,212,0.15); color:var(--accent-cyan); border-color:rgba(6,182,212,0.3);">
+                            Live Provider: assist_cyber
+                        </span>
+                    </div>
+                    <div class="prose-box synapt-box" id="synapt-reasoning">
+                        Awaiting flow investigation execution...
+                    </div>
+                </div>
+
+                <!-- NIST SP 800-61 Actionable Playbook Guidance -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                            NIST SP 800-61 Aligned Investigation & Containment Checklist
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div>
+                            <p style="font-size:0.82rem; font-weight:700; color:var(--accent-blue); margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.05em;">
+                                Recommended Investigation Steps
+                            </p>
+                            <ul class="action-list" id="investigation-steps">
+                                <li class="action-item"><span>Awaiting triage execution...</span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p style="font-size:0.82rem; font-weight:700; color:var(--accent-amber); margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.05em;">
+                                Safe Response Procedures (Human Authorization Required)
+                            </p>
+                            <ul class="action-list" id="response-steps">
+                                <li class="action-item containment"><span>Awaiting triage execution...</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top:1.5rem; font-size:0.78rem; font-family:'JetBrains Mono', monospace; color:var(--text-muted); border-top:1px solid var(--border-subtle); padding-top:0.85rem;" id="provenance-info">
+                        Provenance: Not evaluated
+                    </div>
+                </div>
+
+                <!-- Synapt LLM-as-Judge Quality & Safety Audit Card (Agent 7: judge-review-agent) -->
+                <div class="card" id="judge-audit-card">
+                    <div class="card-header">
+                        <div class="card-title" style="color:var(--accent-emerald);">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Synapt LLM-as-Judge Quality & Safety Audit (Agent 7: judge-review-agent)
+                        </div>
+                        <span class="badge badge-low" id="judge-status-badge" style="background:rgba(16,185,129,0.15); color:var(--accent-emerald); border-color:rgba(16,185,129,0.3);">
+                            Verdict: Passed
+                        </span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+                        <div class="metric-card" style="padding: 0.85rem;">
+                            <div class="metric-label" style="font-size:0.68rem;">Grounding</div>
+                            <div class="metric-value" id="judge-score-grounding" style="font-size:1.15rem; color:var(--accent-blue);">90%</div>
+                            <div class="metric-subtext" style="font-size:0.68rem;">Evidence Backed</div>
+                        </div>
+                        <div class="metric-card" style="padding: 0.85rem;">
+                            <div class="metric-label" style="font-size:0.68rem;">Action Safety</div>
+                            <div class="metric-value" id="judge-score-safety" style="font-size:1.15rem; color:var(--accent-emerald);">100%</div>
+                            <div class="metric-subtext" style="font-size:0.68rem;">Zero Auto Actions</div>
+                        </div>
+                        <div class="metric-card" style="padding: 0.85rem;">
+                            <div class="metric-label" style="font-size:0.68rem;">NIST Alignment</div>
+                            <div class="metric-value" id="judge-score-nist" style="font-size:1.15rem; color:var(--accent-amber);">85%</div>
+                            <div class="metric-subtext" style="font-size:0.68rem;">SP 800-61 Playbook</div>
+                        </div>
+                        <div class="metric-card" style="padding: 0.85rem;">
+                            <div class="metric-label" style="font-size:0.68rem;">Relevance</div>
+                            <div class="metric-value" id="judge-score-relevance" style="font-size:1.15rem; color:var(--accent-cyan);">90%</div>
+                            <div class="metric-subtext" style="font-size:0.68rem;">Threat Specific</div>
+                        </div>
+                    </div>
+
+                    <div class="prose-box" id="judge-critique-box" style="font-size:0.83rem; background: rgba(16,185,129,0.04); border-left: 3px solid var(--accent-emerald);">
+                        Guidance adheres strictly to NIST SP 800-61 and enforces human-in-the-loop authorization.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: SOC Copilot Chat -->
+        <section id="chat-tab" style="display: none;">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div style="display: flex; align-items: center; gap: 0.85rem;">
+                        <div class="brand-badge" style="width:34px; height:34px; font-size:0.95rem;">AI</div>
+                        <div>
+                            <div style="font-weight: 700; font-size: 0.98rem;">CyberSentinel SOC Chat Copilot</div>
+                            <div style="font-size: 0.78rem; color: var(--text-muted);">Grounded in 2.31M CIC-IDS2017 Flows + Live Synapt Context Substrate</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-secondary" style="padding: 0.4rem 0.9rem; font-size: 0.8rem; width: auto;" onclick="clearChat()">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                            Clear Thread
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Interactive Chips -->
+                <div class="chip-row">
+                    <span style="font-size: 0.75rem; color: var(--text-muted); align-self: center; margin-right: 0.25rem;">Suggested Queries:</span>
+                    <button class="chip" onclick="useChatChip('Analyze flow #2039912')">🔍 Analyze flow #2039912</button>
+                    <button class="chip" onclick="useChatChip('What network characteristics distinguish DoS Hulk from Slowloris?')">🌊 DoS Hulk vs Slowloris</button>
+                    <button class="chip" onclick="useChatChip('What are the containment verification steps for PortScan?')">🛡️ PortScan Containment SOP</button>
+                    <button class="chip" onclick="useChatChip('Explain how SYN and RST ratios reveal brute force attempts')">🔑 Brute Force Flag Profiles</button>
+                </div>
+
+                <!-- Chat Message Stream -->
+                <div class="chat-messages" id="chat-thread">
+                    <div class="chat-bubble bot">
+👋 **Hello Analyst!** I am your **CyberSentinel AI Copilot**.
+
+I can assist your incident triage workflow:
+- **Triage specific flows**: Mention any record ID (e.g. *"Analyze flow #2039912"* or *"Check record 500000"*) to inspect engineered telemetry deviations and predicted attack family.
+- **Explain attack mechanisms**: Ask about DoS, DDoS, PortScan, Brute Force, Web Attacks, or Botnets in the CIC-IDS2017 dataset.
+- **Grounded response playbooks**: Request NIST SP 800-61 aligned containment verification procedures retrieved via Synapt.
+
+What suspicious activity would you like to investigate?
+                    </div>
+                </div>
+
+                <!-- Input Box -->
+                <div class="chat-input-bar">
+                    <input type="text" id="chat-input" placeholder="Ask about network anomalies, playbooks, or reference a flow ID (e.g. 'Analyze flow 2039912')..." onkeydown="if(event.key==='Enter') sendChatMessage()">
+                    <button class="btn" style="width: auto; padding: 0 1.6rem;" onclick="sendChatMessage()">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                        Send
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: Historical Explorer -->
+        <section id="explorer-tab" style="display: none;">
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div class="card-header">
+                    <div class="card-title">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+                        Query 2.31M Historical Network Flows (Read-Only SQLite Engine)
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                    <div class="form-group">
+                        <label>Attack Family</label>
+                        <input type="text" id="search-family" placeholder="e.g. port_scan, dos, ddos, brute_force">
+                    </div>
+                    <div class="form-group">
+                        <label>Protocol (6 = TCP, 17 = UDP)</label>
+                        <input type="number" id="search-protocol" placeholder="e.g. 6">
+                    </div>
+                    <div class="form-group">
+                        <label>Min Flow Duration (µs)</label>
+                        <input type="number" id="search-min-duration" placeholder="e.g. 1000">
+                    </div>
+                    <div class="form-group">
+                        <label>Search Query / Keyword</label>
+                        <input type="text" id="search-query" placeholder="Keyword in attack label...">
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.75rem;">
+                    <button class="btn" style="max-width: 220px;" onclick="searchFlows()">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        Filter Records
+                    </button>
+                    <button class="btn btn-secondary" style="max-width: 160px;" onclick="resetSearchFilters()">
+                        Reset Filters
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Record ID</th>
+                                <th>Attack Family</th>
+                                <th>Attack Label</th>
+                                <th>Protocol</th>
+                                <th>Duration (µs)</th>
+                                <th>Packets/s</th>
+                                <th>Bytes/s</th>
+                                <th>SYN Flags</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="flows-table-body">
+                            <tr><td colspan="9" style="text-align:center; color:var(--text-muted); padding: 2.5rem;">Click "Filter Records" to explore 2.31M indexed flows.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+    <!-- Native Accessible Dialog for Analyst Feedback -->
+    <dialog id="feedback-dialog">
+        <h3 style="margin-bottom: 1.25rem; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            Submit Analyst Feedback
+        </h3>
+        <div class="form-group">
+            <label>Analyst Verdict</label>
+            <select id="fb-verdict">
+                <option value="confirmed_malicious">Confirmed Malicious Attack</option>
+                <option value="false_positive">False Positive (Benign Traffic)</option>
+                <option value="needs_escalation">Suspicious - Needs Tier-3 Escalation</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Copilot Quality Rating (1 - 5 Stars)</label>
+            <select id="fb-rating">
+                <option value="5">⭐⭐⭐⭐⭐ 5 - Highly Accurate & Actionable</option>
+                <option value="4">⭐⭐⭐⭐ 4 - Good Analysis</option>
+                <option value="3">⭐⭐⭐ 3 - Acceptable</option>
+                <option value="2">⭐⭐ 2 - Missing Context</option>
+                <option value="1">⭐ 1 - Inaccurate</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Analyst Notes</label>
+            <textarea id="fb-notes" rows="3" placeholder="Enter findings, signature observations, or rationale..."></textarea>
+        </div>
+        <div style="display:flex; gap:1rem; margin-top:1.75rem;">
+            <button class="btn" onclick="submitFeedback()">Save & Sync Feedback</button>
+            <button class="btn btn-secondary" onclick="closeFeedbackModal()">Cancel</button>
+        </div>
+    </dialog>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <script>
+        let currentRecordId = 2039912;
+        let currentPredictedFamily = 'port_scan';
+
+        // Toast notification helper
+        function showToast(message, isError = false) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            if (isError) {
+                toast.style.borderColor = 'var(--accent-rose)';
+            }
+            toast.innerHTML = `
+                <svg width="18" height="18" fill="none" stroke="${isError ? '#FB7185' : '#38BDF8'}" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Live Health Check on Mount
+        async function fetchHealth() {
+            try {
+                const res = await fetch('/health');
+                const data = await res.json();
+                if (data.status === 'ok') {
+                    if (data.sqlite && data.sqlite.total_records) {
+                        document.getElementById('sqlite-status').innerHTML = `
+                            <span class="status-dot emerald"></span>
+                            <span>SQLite: ${data.sqlite.total_records.toLocaleString()} Flows</span>
+                        `;
+                    }
+                    if (data.synapt) {
+                        const synTxt = data.synapt.includes('verified') ? 'Connected' : 'Active';
+                        document.getElementById('synapt-status-text').innerText = 'Synapt MCP: ' + synTxt;
+                        const sideSyn = document.getElementById('sidebar-synapt-val');
+                        if (sideSyn) sideSyn.innerText = synTxt;
+                    }
+                }
+            } catch (err) {
+                console.warn('Health probe failed:', err);
+            }
+        }
+
+        // Module Task Manager Tab Navigation
+        function switchTab(tabId, btnElement) {
+            document.querySelectorAll('.nav-module-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
+            
+            const target = document.getElementById(tabId);
+            if (tabId === 'investigate-tab') {
+                target.style.display = 'grid';
+            } else {
+                target.style.display = 'block';
+            }
+            
+            if (btnElement) {
+                btnElement.classList.add('active');
+            } else {
+                if (tabId === 'investigate-tab') document.getElementById('nav-btn-investigate')?.classList.add('active');
+                if (tabId === 'chat-tab') document.getElementById('nav-btn-chat')?.classList.add('active');
+                if (tabId === 'explorer-tab') document.getElementById('nav-btn-explorer')?.classList.add('active');
+            }
+        }
+
+        // Quick Presets Dictionary
+        const PRESET_MAP = {
+            '2039912': {
+                id: 2039912,
+                query: 'Examine potential reconnaissance probing and service scan indicators',
+                family: 'port_scan',
+                name: 'PortScan Recon (#2039912)'
+            },
+            '500000': {
+                id: 500000,
+                query: 'Volumetric DoS Hulk HTTP Flood investigation',
+                family: 'dos',
+                name: 'Volumetric DoS Hulk (#500000)'
+            },
+            '1200000': {
+                id: 1200000,
+                query: 'SSH / FTP Brute Force Password Spraying and authentication failures',
+                family: 'brute_force',
+                name: 'SSH/FTP Brute Force (#1200000)'
+            },
+            '850000': {
+                id: 850000,
+                query: 'Web Exploit / SQL Injection Probe examination',
+                family: 'web_attack',
+                name: 'Web Attack / SQLi (#850000)'
+            },
+            '2100000': {
+                id: 2100000,
+                query: 'Botnet Ares C2 communication and infiltration traffic',
+                family: 'botnet',
+                name: 'Botnet Infiltration (#2100000)'
+            },
+            '100000': {
+                id: 100000,
+                query: 'Baseline Non-Malicious Corporate Traffic verification',
+                family: 'benign',
+                name: 'Benign Baseline (#100000)'
+            }
+        };
+
+        function handlePresetSelect(recId) {
+            if (!recId) return;
+            const p = PRESET_MAP[recId];
+            if (p) {
+                loadPreset(p.id, p.query, p.family);
+                showToast(`Loaded Preset: ${p.name}`);
+            }
+        }
+
+        function triggerSelectedPreset() {
+            const sel = document.getElementById('sidebar-preset-select');
+            const val = sel.value || '2039912';
+            sel.value = val;
+            handlePresetSelect(val);
+        }
+
+        // Preset Quick Select Handler
+        function loadPreset(id, query, family) {
+            document.getElementById('target-record-id').value = id;
+            document.getElementById('target-query').value = query;
+            document.getElementById('target-family').value = family;
+            
+            const sel = document.getElementById('sidebar-preset-select');
+            if (sel) sel.value = String(id);
+
+            switchTab('investigate-tab', document.getElementById('nav-btn-investigate'));
+            runInvestigation();
+        }
+
+        // Chat Logic
+        const chatMessages = [
+            {
+                role: 'assistant',
+                content: "👋 **Hello Analyst!** I am your **CyberSentinel AI Copilot**.\n\nI can help you:\n- **Triage specific flows**: Mention any record ID (e.g. *\"Analyze flow #2039912\"* or *\"Check record 500000\"*) to inspect its 65 engineered features and risk score.\n- **Explain attack vectors**: Ask about DoS, DDoS, PortScan, Brute Force, Web Attacks, or Botnet telemetry.\n- **Provide grounded response playbooks**: Request NIST SP 800-61 aligned containment verification procedures.\n\nWhat suspicious activity would you like to investigate?"
+            }
+        ];
+
+        function useChatChip(chipText) {
+            document.getElementById('chat-input').value = chipText;
+            sendChatMessage();
+        }
+
+        function clearChat() {
+            chatMessages.length = 0;
+            chatMessages.push({
+                role: 'assistant',
+                content: 'Chat session reset. What network telemetry or security incident would you like to explore?'
+            });
+            renderChatThread();
+            showToast('Chat thread cleared');
+        }
+
+        function formatChatMessage(text) {
+            if (!text) return '';
+            let escaped = text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+            escaped = escaped.replace(/^### (.*$)/gim, '<div style="margin: 0.5rem 0 0.25rem 0; color: #38BDF8; font-weight: 700; font-size: 0.95rem;">$1</div>');
+            escaped = escaped.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
+            escaped = escaped.replace(/^\s*-\s+(.*$)/gim, '<div style="margin-left: 0.8rem; margin-bottom: 0.15rem;">• $1</div>');
+            escaped = escaped.replace(/^>\s*(.*$)/gim, '<div style="border-left: 2px solid #38BDF8; padding-left: 0.5rem; margin: 0.4rem 0; color: #94A3B8; font-size: 0.82rem;">$1</div>');
+            escaped = escaped.replace(/\n/gim, '<br>');
+            return escaped;
+        }
+
+        function renderChatThread() {
+            const thread = document.getElementById('chat-thread');
+            thread.innerHTML = '';
+            chatMessages.forEach(msg => {
+                const div = document.createElement('div');
+                div.className = `chat-bubble ${msg.role === 'user' ? 'user' : 'bot'}`;
+                if (msg.role === 'user') {
+                    div.innerText = msg.content;
+                } else {
+                    div.innerHTML = formatChatMessage(msg.content);
+                }
+                thread.appendChild(div);
+            });
+            thread.scrollTop = thread.scrollHeight;
+        }
+
+        async function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            chatMessages.push({ role: 'user', content: text });
+            input.value = '';
+            renderChatThread();
+
+            const thread = document.getElementById('chat-thread');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chat-bubble bot';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerText = 'Analyzing telemetry and querying Synapt Context Substrate...';
+            thread.appendChild(typingDiv);
+            thread.scrollTop = thread.scrollHeight;
+
+            try {
+                const res = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        messages: chatMessages,
+                        record_id: currentRecordId
+                    })
+                });
+                const data = await res.json();
+                
+                const ind = document.getElementById('typing-indicator');
+                if (ind) ind.remove();
+
+                chatMessages.push({ role: 'assistant', content: data.reply });
+                renderChatThread();
+            } catch (err) {
+                const ind = document.getElementById('typing-indicator');
+                if (ind) ind.remove();
+                chatMessages.push({ role: 'assistant', content: '❌ Failed to receive response from Copilot: ' + err });
+                renderChatThread();
+            }
+        }
+
+        // Investigation Execution
+        async function runInvestigation() {
+            const recordId = parseInt(document.getElementById('target-record-id').value) || null;
+            const query = document.getElementById('target-query').value;
+            const family = document.getElementById('target-family').value || null;
+            const btn = document.getElementById('btn-run-investigate');
+
+            btn.disabled = true;
+            btn.innerHTML = `
+                <svg style="animation: spin 1s linear infinite;" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                Evaluating LangGraph Pipeline...
+            `;
+            document.getElementById('synapt-reasoning').innerText = 'Executing LangGraph multi-agent triage and querying Synapt Context Substrate...';
+
+            try {
+                const startTime = performance.now();
+                const res = await fetch('/investigate/flow', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        record_id: recordId,
+                        query: query,
+                        attack_family: family
+                    })
+                });
+                const data = await res.json();
+                const duration = Math.round(performance.now() - startTime);
+                renderInvestigation(data);
+                showToast(`Triage completed in ${duration}ms across 6 agents`);
+            } catch (err) {
+                showToast('Investigation failed: ' + err, true);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Execute AI Multi-Agent Triage
+                `;
+            }
+        }
+
+        function renderInvestigation(data) {
+            currentRecordId = data.record_id;
+            currentPredictedFamily = data.predicted_family;
+
+            const familyUpper = (data.predicted_family || 'UNKNOWN').toUpperCase();
+            document.getElementById('res-attack').innerText = familyUpper;
+            
+            const confPct = Math.min(100, Math.max(0, (data.confidence || 0) * 100));
+            document.getElementById('res-confidence').innerText = `Confidence: ${confPct.toFixed(1)}%`;
+            document.getElementById('conf-bar').style.width = `${confPct}%`;
+
+            const riskPct = Math.min(100, Math.max(0, (data.risk_score || 0) * 100));
+            document.getElementById('res-risk').innerText = `${riskPct.toFixed(1)}%`;
+            document.getElementById('risk-bar').style.width = `${riskPct}%`;
+
+            document.getElementById('res-severity').innerText = `Severity: ${data.severity || 'Informational'}`;
+            document.getElementById('res-priority').innerText = data.priority_level || 'P4';
+            document.getElementById('res-guardrail').innerText = (data.guardrail_status || 'passed').toUpperCase();
+
+            // Render Feature Deviations Table
+            const tbody = document.getElementById('attributions-table');
+            tbody.innerHTML = '';
+            if (data.feature_attributions && data.feature_attributions.length > 0) {
+                data.feature_attributions.forEach(fa => {
+                    const tr = document.createElement('tr');
+                    const magPct = (fa.deviation_magnitude * 100).toFixed(0);
+                    tr.innerHTML = `
+                        <td style="font-family:'JetBrains Mono'; font-weight:600; color:#93C5FD;">${fa.feature}</td>
+                        <td style="font-family:'JetBrains Mono'; font-weight:700;">${fa.observed_value}</td>
+                        <td style="color:var(--text-muted); font-family:'JetBrains Mono';">${fa.benign_baseline}</td>
+                        <td><span class="badge badge-high">+${magPct}%</span></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } else {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:1.5rem;">No significant feature deviations detected.</td></tr>';
+            }
+
+            // MITRE ATT&CK Tags
+            const mitreContainer = document.getElementById('mitre-tags');
+            mitreContainer.innerHTML = '';
+            if (data.mitre_tactics && data.mitre_tactics.length > 0) {
+                data.mitre_tactics.forEach(m => {
+                    const span = document.createElement('span');
+                    span.className = 'tag';
+                    span.title = 'Click to copy MITRE ID';
+                    span.onclick = () => {
+                        navigator.clipboard.writeText(m.id);
+                        showToast(`Copied ${m.id} to clipboard`);
+                    };
+                    span.innerHTML = `<strong>${m.id}</strong>: ${m.name} (${m.tactic})`;
+                    mitreContainer.appendChild(span);
+                });
+            } else {
+                mitreContainer.innerHTML = '<span style="color:var(--text-muted); font-size:0.8rem;">None mapped</span>';
+            }
+
+            // Synapt Reasoning
+            document.getElementById('synapt-reasoning').innerText = data.synapt_analysis || 'No Synapt analysis generated.';
+
+            // Action Steps (Checklist format for analysts)
+            const invList = document.getElementById('investigation-steps');
+            invList.innerHTML = '';
+            (data.investigation_steps || ['Awaiting steps...']).forEach((step, idx) => {
+                const li = document.createElement('li');
+                li.className = 'action-item';
+                li.innerHTML = `
+                    <input type="checkbox" id="inv-step-${idx}" onchange="this.parentElement.classList.toggle('checked', this.checked)">
+                    <label for="inv-step-${idx}" style="cursor:pointer; flex:1;">${step}</label>
+                `;
+                invList.appendChild(li);
+            });
+
+            const respList = document.getElementById('response-steps');
+            respList.innerHTML = '';
+            (data.recommended_response || ['Awaiting response...']).forEach((step, idx) => {
+                const li = document.createElement('li');
+                li.className = 'action-item containment';
+                li.innerHTML = `
+                    <input type="checkbox" id="resp-step-${idx}" onchange="this.parentElement.classList.toggle('checked', this.checked)">
+                    <label for="resp-step-${idx}" style="cursor:pointer; flex:1;">${step}</label>
+                `;
+                respList.appendChild(li);
+            });
+
+            // Provenance
+            const prov = data.source_provenance || {};
+            document.getElementById('provenance-info').innerText = 
+                `Deterministic Provenance: Source file: ${prov.sqlite_source_file || 'N/A'} | Row: ${prov.sqlite_row_number || 'N/A'} | Model: ${prov.ml_model || 'N/A'} | Synapt Provider: ${prov.synapt_mcp_provider || 'N/A'}`;
+
+            // Agent 7: Synapt LLM-as-Judge Quality & Safety Audit
+            if (data.judge_verdict) {
+                const jv = data.judge_verdict;
+                const dims = jv.dimension_scores || {};
+                const passBadge = document.getElementById('judge-status-badge');
+                if (passBadge) {
+                    passBadge.innerText = jv.pass_verdict ? 'Verdict: Passed' : 'Verdict: Flagged';
+                    passBadge.className = jv.pass_verdict ? 'badge badge-low' : 'badge badge-critical';
+                    passBadge.style.color = jv.pass_verdict ? 'var(--accent-emerald)' : 'var(--accent-rose)';
+                }
+                
+                const scoreGrounding = Math.round((dims.factuality_and_grounding != null ? dims.factuality_and_grounding : 0.9) * 100);
+                const scoreSafety = Math.round((dims.action_safety != null ? dims.action_safety : 1.0) * 100);
+                const scoreNist = Math.round((dims.nist_playbook_alignment != null ? dims.nist_playbook_alignment : 0.85) * 100);
+                const scoreRel = Math.round((dims.relevance != null ? dims.relevance : 0.9) * 100);
+
+                const elG = document.getElementById('judge-score-grounding');
+                const elS = document.getElementById('judge-score-safety');
+                const elN = document.getElementById('judge-score-nist');
+                const elR = document.getElementById('judge-score-relevance');
+                const elC = document.getElementById('judge-critique-box');
+
+                if (elG) elG.innerText = `${scoreGrounding}%`;
+                if (elS) elS.innerText = `${scoreSafety}%`;
+                if (elN) elN.innerText = `${scoreNist}%`;
+                if (elR) elR.innerText = `${scoreRel}%`;
+                if (elC) {
+                    const compPct = Math.round((jv.composite_score || 0.9) * 100);
+                    elC.innerText = `${jv.critique || 'Guidance adheres strictly to NIST SP 800-61.'} (Composite Score: ${compPct}%)`;
+                }
+            }
+        }
+
+        // Explorer Flow Search
+        async function searchFlows() {
+            const family = document.getElementById('search-family').value.trim() || null;
+            const protocol = parseInt(document.getElementById('search-protocol').value) || null;
+            const minDur = parseInt(document.getElementById('search-min-duration').value) || null;
+            const q = document.getElementById('search-query').value.trim() || null;
+
+            try {
+                const res = await fetch('/search/incidents', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        attack_family: family,
+                        protocol: protocol,
+                        min_flow_duration: minDur,
+                        query: q,
+                        limit: 20
+                    })
+                });
+                const data = await res.json();
+                const tbody = document.getElementById('flows-table-body');
+                tbody.innerHTML = '';
+                
+                if (data.sqlite_matches && data.sqlite_matches.length > 0) {
+                    data.sqlite_matches.forEach(row => {
+                        const tr = document.createElement('tr');
+                        const isBenign = row.attack_family === 'benign';
+                        tr.innerHTML = `
+                            <td style="font-family:'JetBrains Mono'; font-weight:700;">#${row.record_id}</td>
+                            <td><span class="badge ${isBenign ? 'badge-low' : 'badge-critical'}">${row.attack_family}</span></td>
+                            <td style="font-weight:600;">${row.attack_label}</td>
+                            <td><span class="badge badge-medium">${row.protocol === 6 ? 'TCP (6)' : row.protocol === 17 ? 'UDP (17)' : row.protocol}</span></td>
+                            <td style="font-family:'JetBrains Mono';">${(row.flow_duration || 0).toLocaleString()}</td>
+                            <td style="font-family:'JetBrains Mono';">${Math.round(row.flow_packets_s || 0).toLocaleString()}</td>
+                            <td style="font-family:'JetBrains Mono';">${Math.round(row.flow_bytes_s || 0).toLocaleString()}</td>
+                            <td style="font-family:'JetBrains Mono';">${row.syn_flag_count}</td>
+                            <td>
+                                <button class="btn btn-secondary" style="padding:0.35rem 0.65rem; font-size:0.75rem; width:auto;" onclick="loadRecordAndInvestigate(${row.record_id})">
+                                    🚀 Investigate
+                                </button>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                    showToast(`Loaded ${data.sqlite_matches.length} matching flow records`);
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding:2rem; color:var(--text-muted);">No records found matching current filter parameters.</td></tr>';
+                }
+            } catch (err) {
+                showToast('Search query failed: ' + err, true);
+            }
+        }
+
+        function resetSearchFilters() {
+            document.getElementById('search-family').value = '';
+            document.getElementById('search-protocol').value = '';
+            document.getElementById('search-min-duration').value = '';
+            document.getElementById('search-query').value = '';
+            searchFlows();
+        }
+
+        function loadRecordAndInvestigate(recId) {
+            switchTab('investigate-tab', document.getElementById('nav-btn-investigate'));
+            document.getElementById('target-record-id').value = recId;
+            runInvestigation();
+        }
+
+        // Native Dialog Feedback Handling
+        const feedbackDialog = document.getElementById('feedback-dialog');
+
+        function openFeedbackModal() {
+            feedbackDialog.showModal();
+        }
+
+        function closeFeedbackModal() {
+            feedbackDialog.close();
+        }
+
+        async function submitFeedback() {
+            const verdict = document.getElementById('fb-verdict').value;
+            const rating = parseInt(document.getElementById('fb-rating').value);
+            const notes = document.getElementById('fb-notes').value;
+
+            try {
+                const res = await fetch('/feedback', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        record_id: currentRecordId,
+                        predicted_family: currentPredictedFamily,
+                        analyst_verdict: verdict,
+                        rating: rating,
+                        notes: notes
+                    })
+                });
+                const data = await res.json();
+                showToast(data.message || 'Analyst feedback recorded & synced successfully!');
+                closeFeedbackModal();
+            } catch (err) {
+                showToast('Failed to submit feedback: ' + err, true);
+            }
+        }
+
+        async function fetchHealth() {
+            try {
+                const res = await fetch('/health');
+                const data = await res.json();
+                const synVal = document.getElementById('sidebar-synapt-val');
+                if (synVal) {
+                    synVal.innerText = data.synapt && data.synapt.includes('verified') ? 'Connected' : 'Active';
+                }
+            } catch (e) {
+                console.warn('Health check warning:', e);
+            }
+        }
+
+        async function fetchSynaptAgents() {
+            try {
+                const res = await fetch('/api/synapt/agents');
+                if (!res.ok) return;
+                const data = await res.json();
+                
+                const countBadge = document.getElementById('synapt-agent-count-badge');
+                if (countBadge && data.total_onboarded) {
+                    countBadge.innerText = `${data.total_onboarded} Active`;
+                }
+
+                if (data.agents && data.agents.length > 0) {
+                    data.agents.forEach(a => {
+                        if (a.id === 'incident-knowledge-agent') {
+                            const tag = document.getElementById('secret-tag-knowledge');
+                            if (tag && a.secret_masked) tag.innerText = `sec: ${a.secret_masked}`;
+                        } else if (a.id === 'historical-incident-rag-agent') {
+                            const tag = document.getElementById('secret-tag-rag');
+                            if (tag && a.secret_masked) tag.innerText = `sec: ${a.secret_masked}`;
+                        } else if (a.id === 'judge-review-agent') {
+                            const tag = document.getElementById('secret-tag-judge');
+                            if (tag && a.secret_masked) tag.innerText = `sec: ${a.secret_masked}`;
+                        }
+                    });
+                }
+            } catch (e) {
+                console.warn('Could not fetch Synapt agent details:', e);
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchHealth();
+            fetchSynaptAgents();
+            runInvestigation();
+        });
+    </script>
+</body>
+</html>

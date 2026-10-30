@@ -1,0 +1,88 @@
+flowchart TB
+    subgraph Input["PHASE 1 · USER INPUT → FRONTEND → BACKEND"]
+        User["1. SOC analyst<br/>record ID · question · attack family · protocol · raw flow"]
+        Frontend["2. Frontend dashboard<br/>investigate · search · chat · feedback"]
+        API["3. FastAPI backend<br/>route dispatch · shared services"]
+        Contract["4. Pydantic validation<br/>types · ranges · non-empty request"]
+        Graph["5. LangGraph StateGraph<br/>create InvestigationState"]
+        User --> Frontend -->|"POST /investigate/flow"| API --> Contract --> Graph
+    end
+
+    subgraph Pipeline["PHASE 2 · SEVEN-AGENT INCIDENT INVESTIGATION"]
+        Guard["Agent 1 · Guardrail<br/>injection · relevance · action safety"]
+        Triage["Agent 2 · Flow Triage<br/>record lookup · 404 · hybrid historical RAG"]
+        ML["Agent 3 · ML Analysis<br/>classification · risk · explainability · anomaly"]
+        Knowledge["Agent 4 · Synapt Knowledge<br/>procedures · MITRE · analyst verification"]
+        Priority["Agent 5 · Prioritization<br/>deterministic P1–P4 decision"]
+        Response["Agent 6 · Response Recommendation<br/>steps · actions · provenance · limitations"]
+        Judge["Agent 7 · Judge Review<br/>safety gate · grounding · NIST · relevance"]
+        Guard --> Triage --> ML --> Knowledge --> Priority --> Response --> Judge
+    end
+
+    Graph --> Guard
+
+    subgraph Synapt["PHASE 3 · SYNAPT AGENT ROLES AND MCP TOOLS — ALIGNED TO CALLING STAGES"]
+        HistAgent["Historical Incident RAG Agent<br/>historical-incident-rag-agent"]
+        HistTools["Declared: trident_search · trident_query"]
+        IntelAgent["Threat Intel & SOP Agent<br/>incident-knowledge-agent"]
+        IntelTools["Declared: trident_query · trident_get_procedures"]
+        JudgeAgent["Judge Review Agent<br/>judge-review-agent"]
+        JudgeTools["Declared: trident_query"]
+        Client["Shared SynaptClient<br/>TLS/auth · MCP initialize · tools/list · tools/call"]
+        Selection["Runtime retrieve() selection<br/>trident_query preferred · trident_search fallback"]
+        Provider[("Synapt Context Substrate<br/>provider: assist_cyber")]
+        HistAgent --> HistTools --> Client
+        IntelAgent --> IntelTools --> Client
+        JudgeAgent --> JudgeTools --> Client
+        Client --> Selection --> Provider
+    end
+
+    Triage -->|"similar-incident question"| HistAgent
+    Knowledge -->|"procedure/context question"| IntelAgent
+    Judge -->|"rubric-evaluation question"| JudgeAgent
+    Provider -. "semantic candidates" .-> Triage
+    Provider -. "knowledge evidence" .-> Knowledge
+    Provider -. "judge text/JSON" .-> Judge
+
+    subgraph Local["PHASE 4 · LOCAL DATA, MODELS, AND DETERMINISTIC SERVICES"]
+        SQLite[("SQLite flows<br/>2,313,810 records")]
+        FTS[("291 summaries<br/>FTS5 BM25")]
+        Classifier["HistGradientBoostingClassifier<br/>65 features · 9 families"]
+        Anomaly["IsolationForest<br/>anomaly score + threshold"]
+        MITRE["MITRE mapping + P1–P4 policy"]
+        Feedback[("analyst_feedback")]
+        Reports["Evaluation and benchmark reports"]
+    end
+
+    SQLite --> Triage
+    FTS --> Triage
+    Classifier --> ML
+    Anomaly --> ML
+    MITRE --> ML
+    MITRE --> Priority
+
+    subgraph Output["PHASE 5 · BACKEND RESPONSE → FRONTEND RESULTS → HUMAN DECISION"]
+        Mapper["10. Backend response mapper<br/>FlowInvestigationResponse"]
+        Result["11. Frontend result cards<br/>family · confidence · risk · anomaly · priority<br/>similar incidents · MITRE · guidance · judge verdict"]
+        Decision["12. Human analyst verification<br/>approve, escalate, monitor, or dismiss"]
+        FeedbackAPI["13. Feedback/review/improve routes"]
+        Mapper --> Result --> Decision --> FeedbackAPI
+        FeedbackAPI --> Feedback
+        FeedbackAPI --> Reports
+    end
+
+    Judge --> Mapper
+    Result --> Frontend
+    FeedbackAPI -. "reviewed improvement loop" .-> Classifier
+
+    subgraph Supporting["SUPPORTING FRONTEND FLOWS"]
+        Search["Incident Search tab<br/>/search/incidents → SQLite + Historical RAG Agent"]
+        Chat["SOC Copilot tab<br/>/chat → guardrails + flow context + Threat Intel Agent"]
+        AgentStatus["Agent Status panel<br/>/api/synapt/agents → three logical roles"]
+        Health["Health panel<br/>/health → SQLite/model/configuration indicators"]
+    end
+
+    Frontend --> Search
+    Frontend --> Chat
+    Frontend --> AgentStatus
+    Frontend --> Health

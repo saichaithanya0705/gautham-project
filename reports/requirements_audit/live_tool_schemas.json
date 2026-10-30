@@ -1,0 +1,758 @@
+{
+  "trident_get_schema": {
+    "description": "Get the graph schema: what node types exist, what edge types connect them, counts,\nand sample property names for each node type. Call this FIRST to understand the\nstructure of the knowledge graph before querying it.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_id"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_search": {
+    "description": "Semantic search across graph nodes. Find entities, concepts, procedures, or steps by meaning.\nReturns matching nodes with their node_id (use node_id with trident_get_node and trident_traverse).",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "node_type": {
+          "default": "",
+          "description": "Filter by node type: Entity, Concept, Procedure, Step. Leave empty for all.",
+          "type": "string"
+        },
+        "top_k": {
+          "default": 10,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "provider_id",
+        "query"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_find_exact": {
+    "description": "Find a node by its exact label or name (case-insensitive). Use this when you know\nthe specific name of an entity, concept, or procedure \u2014 faster and more precise than\nsemantic search. Returns the node with its Neo4j ID.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "name": {
+          "description": "Exact entity/concept/procedure name to look up",
+          "type": "string"
+        },
+        "node_type": {
+          "default": "",
+          "description": "Optional: Entity, Concept, Procedure, Step, Document, Chunk",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_id",
+        "name"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_cypher": {
+    "description": "Run a read-only Cypher query directly against Neo4j. This is the most powerful\ntool \u2014 use it for complex multi-hop queries, pattern matching, aggregations, and\npath finding that can't be done with simpler tools.\n\nThe query MUST include {provider_id: $provider_id} to scope to the active provider.\nA LIMIT is auto-appended if not present.\n\nExample queries:\n- Find all entities connected to a procedure's steps:\n  MATCH (p:Procedure {provider_id: $provider_id})-[:HAS_STEP]->(s:Step)-[:REFERENCES]->(e:Entity)\n  RETURN p.name, s.step_number, s.description, e.label\n\n- Find shortest path between two entities:\n  MATCH (a:Entity {label: 'X', provider_id: $provider_id}),\n        (b:Entity {label: 'Y', provider_id: $provider_id}),\n        path = shortestPath((a)-[*..5]-(b))\n  RETURN [n IN nodes(path) | labels(n)[0] + ': ' + coalesce(n.label, n.name, '')] AS path\n\n- Count edges by type:\n  MATCH (a {provider_id: $provider_id})-[r]->(b {provider_id: $provider_id})\n  RETURN type(r) AS edge_type, count(r) AS count ORDER BY count DESC",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "query": {
+          "description": "Cypher query. MUST use {provider_id: $provider_id} filter. Read-only \u2014 no CREATE/DELETE/MERGE.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_id",
+        "query"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_get_node": {
+    "description": "Get a specific node's properties and its meaningful connections.\nBy default, Chunk neighbours are excluded (use trident_get_chunks for text).\nShows Entity, Concept, Procedure, Step, Proposition, and Document connections.\nRaise depth to explore multiple hops out in one call instead of chaining several\ntrident_get_node/trident_traverse calls -- depth>1 responses include an `edges`\nlist covering the whole multi-hop subgraph (see GraphStore.get_node_detail).",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "node_id": {
+          "type": "string"
+        },
+        "include_chunks": {
+          "default": false,
+          "description": "Include Chunk neighbours (noisy \u2014 usually skip). Default false.",
+          "type": "boolean"
+        },
+        "depth": {
+          "default": 1,
+          "description": "Max hops from this node to explore (1-5). Default 1 (direct neighbours only).",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "provider_id",
+        "node_id"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_traverse": {
+    "description": "Walk the graph from a node. Follow specific edge types and filter by node types.\nUse this to explore procedure DAGs, entity relationships, or concept hierarchies.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "node_id": {
+          "type": "string"
+        },
+        "edge_types": {
+          "default": "",
+          "description": "Comma-separated edge types to follow, e.g. 'HAS_STEP,PRECEDES'. Empty for all.",
+          "type": "string"
+        },
+        "node_types": {
+          "default": "",
+          "description": "Comma-separated node types to return, e.g. 'Step,Entity'. Empty for all.",
+          "type": "string"
+        },
+        "direction": {
+          "default": "both",
+          "description": "'out', 'in', or 'both'",
+          "type": "string"
+        },
+        "depth": {
+          "default": 1,
+          "description": "Max hops from start (1-5)",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "provider_id",
+        "node_id"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_get_chunks": {
+    "description": "Semantic search over raw document text. Returns the actual content from ingested documents.\nUse this to find specific facts, clauses, or details not captured as graph nodes.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "top_k": {
+          "default": 5,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "provider_id",
+        "query"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_get_procedures": {
+    "description": "Get structured procedures (SOPs) with ordered steps.\nEach procedure has a name, intent, and numbered steps with prerequisites.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "query": {
+          "default": "",
+          "description": "Search by intent. Leave empty to list all procedures.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_id"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_get_stats": {
+    "description": "Get a quick overview of what's in a provider's graph.\nShows counts of nodes, chunks, entities, concepts, propositions, procedures, plus\n`counts_by_label` for every node label actually present, `provider_kind`, and\n`has_ticket_store`. When `has_ticket_store` is true there is also a `ticket_mining`\nblock with the ticket counts, the label fields it can predict, and its measured\nlabel-quality and accuracy figures \u2014 use trident_label_ticket to predict against it.\nA provider can hold both knowledge data and tickets, so the graph counts and the\nticket block appear together rather than one instead of the other.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_id"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_label_ticket": {
+    "description": "Predict label values for a support ticket, for providers with a ticket store.\n\nFinds the most similar already-labelled tickets and ranks what THEY are labelled,\nreturning the top candidates per field with a confidence, how many neighbours backed\neach one, and an example neighbour. Use trident_get_stats first to check the provider\nhas a ticket store and to see which label fields it has.\n\nKept as its own tool after `/label` folded into `trident_query`, because\n`trident_query` is registered directly on the MCP server and is NOT in\n`ALL_TOOLS` -- removing this one would take ticket labelling away from the\nin-process LangGraph agent entirely, not just from the MCP surface. It is a\nthin delegate over the same `label_tickets` core.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "ticket": {
+          "description": "The ticket as a JSON object, shaped like a row of the dump the provider was ingested from",
+          "type": "string"
+        },
+        "fields": {
+          "default": "",
+          "description": "Comma-separated label fields to predict. Leave empty for all of the provider's declared fields.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_id",
+        "ticket"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_episodes": {
+    "description": "Inspect a provider's episodes: past situations, either lived or mined.\n\nAn episode is a record of a past situation. A **lived** episode is something\nthat actually happened once. A **mined** episode is a recurring pattern a\nfitter detected across many records, carrying a confidence, a recurrence\ncount, and the examples it was drawn from.\n\nThree modes, picked by which arguments you pass:\n  - `episode_id` set: fetch exactly that episode, in full.\n  - `query` set: find the episodes whose summaries are closest to that\n    situation, with their similarity scores.\n  - neither set: report what the episode store holds for this provider --\n    whether it exists, how many episodes, and whether its embedding space\n    matches this service's. Use this first when a `query` returns nothing,\n    because \"no relevant episodes\" and \"the store is misconfigured\" look\n    identical from the outside otherwise.\n\nThis is a read-only inspection tool and is deliberately separate from\n`trident_query`, which recalls episodes automatically and folds them into\nits answer. Use this one to see the episodes themselves.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "query": {
+          "default": "",
+          "description": "Describe a situation to find past episodes like it. Leave empty to inspect the store instead.",
+          "type": "string"
+        },
+        "episode_id": {
+          "default": "",
+          "description": "Fetch one specific episode by id. Overrides `query`.",
+          "type": "string"
+        },
+        "top_k": {
+          "default": 5,
+          "description": "How many episodes to return for a `query` (1-20).",
+          "type": "integer"
+        },
+        "include_events": {
+          "default": false,
+          "description": "Include each episode's full event log. Long \u2014 usually skip.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "provider_id"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_create_entity": {
+    "description": "Create a new entity in the knowledge graph.\nThe entity will be semantically indexed for future search and resolution.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "entity_type": {
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_id",
+        "label",
+        "entity_type"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_create_concept": {
+    "description": "Create a new concept (definition/term) in the knowledge graph.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "definition": {
+          "type": "string"
+        },
+        "aliases": {
+          "default": "",
+          "description": "Comma-separated aliases, e.g. 'MRC,Monthly Fee'",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_id",
+        "name",
+        "definition"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_create_relationship": {
+    "description": "Create a relationship (edge) between two existing entities or concepts.\nBoth source and target must already exist. Use edge types from the vocabulary:\nRELATED_TO, PART_OF, INSTANCE_OF, GOVERNED_BY, LOCATED_IN, DEPENDS_ON, OPERATES,\nUSES, ACQUIRED_BY, CONNECTS_TO, MANAGES, TERMINATES_AT, PROVISIONED_FROM,\nIMPLEMENTED_BY, DESCRIBED_BY, SOURCED_FROM, FLAGS, SUPERSEDES, BILLED_ON,\nRECONCILES_TO, CLASSIFIED_AS, OTHER. Provide a brief description for context.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "source_label": {
+          "type": "string"
+        },
+        "edge_type": {
+          "type": "string"
+        },
+        "target_label": {
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "type": "string"
+        },
+        "confidence": {
+          "default": 1.0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "provider_id",
+        "source_label",
+        "edge_type",
+        "target_label"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_query": {
+    "description": "Run a retrieval-augmented query against a provider's knowledge base.\n\nReturns a grounded answer with confidence score, source chunks, retrieved\nprocedures, graph provenance metadata, and -- when the provider has a ticket\nstore -- per-label confidences with example tickets. Knowledge, procedural\nand graph retrieval always run together except under `ticket_mode=\"only\"`;\nthey are three legs of one grounded answer and are not independently\nselectable.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "top_k": {
+          "default": 5,
+          "type": "integer"
+        },
+        "graph_hops": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "BFS depth from matched entities. Omit to let the retrieved\nquestion's classified intent pick a depth (roadmap 6.2) -- a\ncausal or exploratory question gets more hops than a direct\nlookup. Pass an explicit value to override that entirely."
+        },
+        "user_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "task_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "ticket_mode": {
+          "default": "auto",
+          "enum": [
+            "auto",
+            "off",
+            "only"
+          ],
+          "type": "string",
+          "description": "Whether the ticket store takes part in this query -- the\nonly optional store.\n  \"auto\" (default): run the ticket leg when the provider has a\n    usable ticket store. A provider with no ticket data is never\n    an error, only a reason in `stores_skipped[\"ticket\"]`.\n  \"off\": never run the ticket leg. Incompatible with supplying\n    `tickets` or `label_fields` -- that combination is a tool\n    error, not silently ignored.\n  \"only\": run ONLY the ticket leg -- no question embedding, no\n    graph traversal, no LLM call. `answer` then points at\n    `ticket_labels` rather than being prose."
+        },
+        "tickets": {
+          "anyOf": [
+            {
+              "items": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Structured ticket rows to label, shaped like rows of the dump\nthe provider was ingested from. At most 50. Results are index-aligned\nin `ticket_labels`, and a row that could not be labelled carries\n`ticket_labels[i].error` while the rest still succeed. Omit to label\nthe `question` text itself."
+        },
+        "label_fields": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Restrict prediction to some of the provider's declared\nlabel fields. Naming an undeclared field is an error, not a filter."
+        }
+      },
+      "required": [
+        "provider_id",
+        "question"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_feedback": {
+    "description": "Record feedback for a query or a specific task.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "feedback_id": {
+          "type": "string",
+          "description": "identifier."
+        },
+        "caller_type": {
+          "enum": [
+            "user",
+            "agent",
+            "mcp_tool"
+          ],
+          "type": "string",
+          "description": "user | agent | mcp_tool"
+        },
+        "verdict": {
+          "enum": [
+            "deflected",
+            "partial",
+            "not_deflected"
+          ],
+          "type": "string",
+          "description": "deflected | not_deflected | partial"
+        },
+        "post_action": {
+          "anyOf": [
+            {
+              "enum": [
+                "proceeded",
+                "retried",
+                "fallback",
+                "escalated",
+                "failed"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "retried | proceeded | fallback | escalated | failed"
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Numeric score."
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional explanation."
+        }
+      },
+      "required": [
+        "feedback_id",
+        "caller_type",
+        "verdict"
+      ],
+      "type": "object"
+    }
+  },
+  "trident_ingest": {
+    "description": "Ingest external content into a provider's knowledge base via the intake service.\n\nSupports three connector types (set `connector_type`):\n\n- \"content\": Ingest inline text or JSON passed directly. Requires `content`.\n             The intake service ingests files, not raw strings, so the\n             content is wrapped as an in-memory document and uploaded via the\n             file connector. Optional `filename` (extension decides parsing;\n             auto-detected as .json/.txt when omitted). Max 50 MB.\n- \"url\":     Fetch a single file from an HTTP/HTTPS URL. Requires `url`.\n- \"scraper\": Scrape one or more web pages. Requires `urls` (comma-separated).\n             Optional: `crawl_depth` (0-2), `respect_robots`, `merge_pages`\n             (when true, all crawled pages become one document/job).\n- \"rest_api\": Call a REST endpoint and ingest the response. Requires `rest_url`.\n             Optional: `rest_method` (GET/POST/PUT/PATCH/DELETE),\n             `rest_headers` / `rest_params` (JSON object strings),\n             `rest_body` (raw string), `rest_auth_type`\n             (none|bearer|basic|api_key) with `rest_auth_value` /\n             `rest_auth_username` / `rest_api_key_header`,\n             `rest_timeout`, `rest_verify_ssl`.\n- \"database\": Query a DB table/collection. Requires `db_type`\n             (postgres|mysql|mongodb), `database`, and `table_name`\n             (collection name for mongodb). Connection:\n             - postgres: `pg_connection_string` OR `host`+`db_username`+`db_password`\n             - mysql:    `host`+`db_username`+`db_password`\n             - mongodb:  `mongo_connection_uri` OR `host` (+`mongo_auth_source`,\n                         `mongo_tls`)\n             Optional: `port`, `columns` (comma-separated), `date_column`\n             + `date_from` + `date_to`, `row_limit`.\n- \"jira\":    Fetch issues + attachments from a Jira Cloud project. Requires\n             `base_url`, `email`, `api_token`, `project_key`. Optional:\n             `max_results`.\n\nCommon options: `document_type` (text|sop|tabular), `provider_name`,\nTTL controls (`has_ttl`, `ttl_days`), and graph extraction:\n  - `extraction_mode` (comprehensive|balanced|precise) \u2014 REQUIRED for the\n    knowledge graph to be built. Defaults to \"comprehensive\"; set to \"\" to\n    skip extraction (chunks/vectors only, no graph).\n  - `entity_types` / `relationship_types` \u2014 optional JSON-string definitions\n    to constrain extraction.\n  - `chunking_type`, `chunk_size`, `chunk_overlap` \u2014 optional chunking\n    overrides; the service default is used when left unset.\n\nIngestion is asynchronous: this returns immediately with a `req_id` (and,\nfor scraper, a per-URL accepted/failures breakdown) once the request is\naccepted \u2014 it does not mean processing is complete.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "connector_type": {
+          "type": "string"
+        },
+        "document_type": {
+          "default": "text",
+          "type": "string"
+        },
+        "provider_name": {
+          "default": "",
+          "type": "string"
+        },
+        "has_ttl": {
+          "default": true,
+          "type": "boolean"
+        },
+        "ttl_days": {
+          "default": 30,
+          "type": "integer"
+        },
+        "extraction_mode": {
+          "default": "comprehensive",
+          "type": "string"
+        },
+        "entity_types": {
+          "default": "",
+          "type": "string"
+        },
+        "relationship_types": {
+          "default": "",
+          "type": "string"
+        },
+        "chunking_type": {
+          "default": "",
+          "type": "string"
+        },
+        "chunk_size": {
+          "default": 0,
+          "type": "integer"
+        },
+        "chunk_overlap": {
+          "default": 0,
+          "type": "integer"
+        },
+        "url": {
+          "default": "",
+          "type": "string"
+        },
+        "content": {
+          "default": "",
+          "type": "string"
+        },
+        "filename": {
+          "default": "",
+          "type": "string"
+        },
+        "urls": {
+          "default": "",
+          "type": "string"
+        },
+        "crawl_depth": {
+          "default": 1,
+          "type": "integer"
+        },
+        "respect_robots": {
+          "default": true,
+          "type": "boolean"
+        },
+        "merge_pages": {
+          "default": true,
+          "type": "boolean"
+        },
+        "rest_url": {
+          "default": "",
+          "type": "string"
+        },
+        "rest_method": {
+          "default": "GET",
+          "type": "string"
+        },
+        "rest_headers": {
+          "default": "",
+          "type": "string"
+        },
+        "rest_body": {
+          "default": "",
+          "type": "string"
+        },
+        "rest_params": {
+          "default": "",
+          "type": "string"
+        },
+        "rest_auth_type": {
+          "default": "none",
+          "type": "string"
+        },
+        "rest_auth_value": {
+          "default": "",
+          "type": "string"
+        },
+        "rest_auth_username": {
+          "default": "",
+          "type": "string"
+        },
+        "rest_api_key_header": {
+          "default": "X-API-Key",
+          "type": "string"
+        },
+        "rest_timeout": {
+          "default": 30,
+          "type": "integer"
+        },
+        "rest_verify_ssl": {
+          "default": true,
+          "type": "boolean"
+        },
+        "db_type": {
+          "default": "",
+          "type": "string"
+        },
+        "database": {
+          "default": "",
+          "type": "string"
+        },
+        "table_name": {
+          "default": "",
+          "type": "string"
+        },
+        "host": {
+          "default": "",
+          "type": "string"
+        },
+        "db_username": {
+          "default": "",
+          "type": "string"
+        },
+        "db_password": {
+          "default": "",
+          "type": "string"
+        },
+        "pg_connection_string": {
+          "default": "",
+          "type": "string"
+        },
+        "mongo_connection_uri": {
+          "default": "",
+          "type": "string"
+        },
+        "mongo_auth_source": {
+          "default": "",
+          "type": "string"
+        },
+        "mongo_tls": {
+          "default": false,
+          "type": "boolean"
+        },
+        "port": {
+          "default": 0,
+          "type": "integer"
+        },
+        "columns": {
+          "default": "",
+          "type": "string"
+        },
+        "date_column": {
+          "default": "",
+          "type": "string"
+        },
+        "date_from": {
+          "default": "",
+          "type": "string"
+        },
+        "date_to": {
+          "default": "",
+          "type": "string"
+        },
+        "row_limit": {
+          "default": 0,
+          "type": "integer"
+        },
+        "base_url": {
+          "default": "",
+          "type": "string"
+        },
+        "email": {
+          "default": "",
+          "type": "string"
+        },
+        "api_token": {
+          "default": "",
+          "type": "string"
+        },
+        "project_key": {
+          "default": "",
+          "type": "string"
+        },
+        "max_results": {
+          "default": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "provider_id",
+        "connector_type"
+      ],
+      "type": "object"
+    }
+  }
+}

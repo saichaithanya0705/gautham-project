@@ -1,0 +1,98 @@
+flowchart TB
+    subgraph Presentation["1 · Presentation Module"]
+        Analyst["SOC analyst"]
+        UI["ui/index.html<br/>investigation · search · chat · feedback"]
+        Analyst --> UI
+    end
+
+    subgraph API["2 · API and Contract Module"]
+        Main["main.py · FastAPI route composition"]
+        Schemas["schemas.py · Pydantic contracts"]
+        Mapper["Workflow-state → response mapper"]
+        Main --> Schemas
+        Main --> Mapper
+    end
+
+    subgraph Orchestration["3 · Investigation Orchestration Module · workflow.py"]
+        Guard["1. guardrail_agent"]
+        Triage["2. flow_triage_agent"]
+        ML["3. ml_analysis_agent"]
+        Knowledge["4. synapt_knowledge_agent"]
+        Priority["5. prioritization_agent"]
+        Response["6. response_recommendation_agent"]
+        Judge["7. judge_review_agent"]
+        Guard --> Triage --> ML --> Knowledge --> Priority --> Response --> Judge
+    end
+
+    subgraph Services["4 · Domain Service Modules"]
+        Guardrails["guardrails.py<br/>injection · relevance · telemetry validation"]
+        Store["sqlite_store.py<br/>exact flow lookup and structured search"]
+        HistRAG["rag/historical_rag.py<br/>BM25 + semantic channel + RRF"]
+        Predictor["ml/predictor.py<br/>classification · risk · explanations"]
+        Anomaly["ml/anomaly.py<br/>IsolationForest scoring"]
+        Policy["policy.py<br/>deterministic P1–P4 rules"]
+        JudgeService["judge/evaluator.py<br/>hard safety + rubric evaluation"]
+        Chat["chat.py<br/>conversational SOC copilot"]
+        Improvement["feedback/improvement.py<br/>review and benchmark lifecycle"]
+        EvalAdapter["evaluation/deepeval_adapter.py<br/>provider adapter"]
+    end
+
+    subgraph SynaptRoles["5 · Synapt Logical Agent Roles — aligned to consuming stages"]
+        HistoricalAgent["historical-incident-rag-agent<br/>role: semantic incident similarity<br/>declared tools: trident_search, trident_query"]
+        KnowledgeAgent["incident-knowledge-agent<br/>role: NIST/MITRE/SOP reasoning<br/>declared tools: trident_query, trident_get_procedures"]
+        JudgeAgent["judge-review-agent<br/>role: safety and grounding review<br/>declared tool: trident_query"]
+    end
+
+    subgraph SynaptRuntime["6 · Shared Synapt Runtime Boundary"]
+        Client["synapt/client.py · SynaptClient<br/>TLS · authentication · initialize · tools/list · tools/call"]
+        Select["retrieve() tool selection<br/>prefer trident_query; fallback trident_search"]
+        Provider[("Synapt Context Substrate<br/>provider: assist_cyber")]
+        Client --> Select --> Provider
+    end
+
+    subgraph State["7 · Data, Model, and Report Module"]
+        Flows[("SQLite flows<br/>2,313,810 rows")]
+        FTS[("291 summaries + FTS5 index")]
+        Feedback[("analyst_feedback")]
+        Classifier["attack_classifier.joblib<br/>65 features · 9 families"]
+        AnomalyModel["anomaly_detector.joblib"]
+        Candidate["attack_classifier_candidate.joblib"]
+        Reports["JSON benchmark/evaluation reports"]
+    end
+
+    UI <-->|"HTTP / JSON"| Main
+    Main -->|"POST /investigate/flow"| Guard
+    Guard --> Guardrails
+    Triage --> Store
+    Triage --> HistRAG
+    Store --> Flows
+    HistRAG --> FTS
+    ML --> Predictor
+    ML --> Anomaly
+    Predictor --> Classifier
+    Anomaly --> AnomalyModel
+    Priority --> Policy
+    Judge --> JudgeService
+    JudgeService --> EvalAdapter
+    Judge --> Mapper --> UI
+
+    Triage -->|"similar-incident request"| HistoricalAgent
+    Knowledge -->|"procedure/context request"| KnowledgeAgent
+    Judge -->|"rubric request"| JudgeAgent
+    HistoricalAgent -. "logical role" .-> Client
+    KnowledgeAgent -. "logical role" .-> Client
+    JudgeAgent -. "logical role" .-> Client
+
+    Main -->|"POST /search/incidents"| HistRAG
+    Main -->|"POST /chat"| Chat
+    Chat --> Store
+    Chat --> Predictor
+    Chat --> KnowledgeAgent
+    Main -->|"feedback routes"| Improvement
+    Improvement --> Feedback
+    Improvement --> Candidate
+    Improvement --> Reports
+    Main -. "optional trident_feedback" .-> Client
+
+    UI --> Human["Human analyst verification and response decision"]
+    Human -->|"rating, verdict, correction"| Improvement

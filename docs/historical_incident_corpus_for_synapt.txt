@@ -1,0 +1,752 @@
+## INC-2017-BENI-821
+Incident INC-2017-BENI-821 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 15,417,888 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 821.
+
+## INC-2017-BENI-145
+Incident INC-2017-BENI-145 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 17, duration 110,090,001 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 145.
+
+## INC-2017-BENI-576
+Incident INC-2017-BENI-576 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 17, duration 120,153 µs, packet rate 33 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 576.
+
+## INC-2017-BENI-961
+Incident INC-2017-BENI-961 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 17, duration 71,002,612 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 961.
+
+## INC-2017-BENI-453
+Incident INC-2017-BENI-453 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 17, duration 69,023,887 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 453.
+
+## INC-2017-BENI-61
+Incident INC-2017-BENI-61 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 1,151 µs, packet rate 13,032 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 61.
+
+## INC-2017-BENI-321
+Incident INC-2017-BENI-321 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 3 µs, packet rate 666,667 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 321.
+
+## INC-2017-BENI-240
+Incident INC-2017-BENI-240 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 17, duration 69,050,211 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 240.
+
+## INC-2017-BENI-31
+Incident INC-2017-BENI-31 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 3,536 µs, packet rate 6,787 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 31.
+
+## INC-2017-BENI-122
+Incident INC-2017-BENI-122 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 17, duration 70,990,710 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 122.
+
+## INC-2017-BENI-590
+Incident INC-2017-BENI-590 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 17, duration 60,644 µs, packet rate 33 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 590.
+
+## INC-2017-BENI-300
+Incident INC-2017-BENI-300 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 66 µs, packet rate 30,303 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 300.
+
+## INC-2017-BENI-769
+Incident INC-2017-BENI-769 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 657,835 µs, packet rate 29 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 769.
+
+## INC-2017-BENI-719
+Incident INC-2017-BENI-719 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 17, duration 60,914 µs, packet rate 33 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 719.
+
+## INC-2017-BENI-732
+Incident INC-2017-BENI-732 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 3,168 µs, packet rate 631 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 732.
+
+## INC-2017-BENI-293
+Incident INC-2017-BENI-293 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 5,413,908 µs, packet rate 5 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 293.
+
+## INC-2017-BENI-910
+Incident INC-2017-BENI-910 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 21,781 µs, packet rate 92 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 910.
+
+## INC-2017-BENI-204
+Incident INC-2017-BENI-204 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 5,871,001 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 204.
+
+## INC-2017-BENI-259
+Incident INC-2017-BENI-259 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 970 µs, packet rate 15,464 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 259.
+
+## INC-2017-BENI-215
+Incident INC-2017-BENI-215 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 111,616,277 µs, packet rate 0 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 215.
+
+## INC-2017-BENI-256
+Incident INC-2017-BENI-256 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 888 µs, packet rate 14,640 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 256.
+
+## INC-2017-BENI-353
+Incident INC-2017-BENI-353 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 1 µs, packet rate 2,000,000 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 353.
+
+## INC-2017-BENI-580
+Incident INC-2017-BENI-580 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 3 µs, packet rate 666,667 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 580.
+
+## INC-2017-BENI-662
+Incident INC-2017-BENI-662 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 314,831 µs, packet rate 22 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 662.
+
+## INC-2017-BENI-223
+Incident INC-2017-BENI-223 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 17, duration 66,080,896 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 223.
+
+## INC-2017-BENI-232
+Incident INC-2017-BENI-232 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 482 µs, packet rate 31,120 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 232.
+
+## INC-2017-BENI-936
+Incident INC-2017-BENI-936 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 250,366 µs, packet rate 68 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 936.
+
+## INC-2017-BENI-835
+Incident INC-2017-BENI-835 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 21 µs, packet rate 95,238 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 835.
+
+## INC-2017-BENI-532
+Incident INC-2017-BENI-532 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 5,082,067 µs, packet rate 3 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 532.
+
+## INC-2017-BENI-592
+Incident INC-2017-BENI-592 (benign - benign): Normal baseline corporate business traffic adhering to standard bidirectional HTTP/TLS conversational ratios and flow durations. Observed on protocol 6, duration 587,015 µs, packet rate 20 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Benign-Monday-no-metadata.parquet row 592.
+
+## INC-2017-BOTN-524987
+Incident INC-2017-BOTN-524987 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 79,411 µs, packet rate 88 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 66156.
+
+## INC-2017-BOTN-549250
+Incident INC-2017-BOTN-549250 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 38 µs, packet rate 52,632 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 90419.
+
+## INC-2017-BOTN-548035
+Incident INC-2017-BOTN-548035 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 49 µs, packet rate 40,816 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 89204.
+
+## INC-2017-BOTN-527582
+Incident INC-2017-BOTN-527582 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 53 µs, packet rate 37,736 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 68751.
+
+## INC-2017-BOTN-541869
+Incident INC-2017-BOTN-541869 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 144 µs, packet rate 13,889 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 83038.
+
+## INC-2017-BOTN-523972
+Incident INC-2017-BOTN-523972 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 76,434 µs, packet rate 92 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 65141.
+
+## INC-2017-BOTN-538129
+Incident INC-2017-BOTN-538129 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 86,573 µs, packet rate 81 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 79298.
+
+## INC-2017-BOTN-539611
+Incident INC-2017-BOTN-539611 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 160,712 µs, packet rate 498 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 80780.
+
+## INC-2017-BOTN-544883
+Incident INC-2017-BOTN-544883 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 63,618 µs, packet rate 110 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 86052.
+
+## INC-2017-BOTN-538398
+Incident INC-2017-BOTN-538398 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 82,147 µs, packet rate 85 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 79567.
+
+## INC-2017-BOTN-528734
+Incident INC-2017-BOTN-528734 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 75,793 µs, packet rate 92 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 69903.
+
+## INC-2017-BOTN-547204
+Incident INC-2017-BOTN-547204 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 224,069 µs, packet rate 40 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 88373.
+
+## INC-2017-BOTN-515373
+Incident INC-2017-BOTN-515373 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 50 µs, packet rate 40,000 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 56542.
+
+## INC-2017-BOTN-540827
+Incident INC-2017-BOTN-540827 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 52 µs, packet rate 38,462 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 81996.
+
+## INC-2017-BOTN-539778
+Incident INC-2017-BOTN-539778 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 10 µs, packet rate 200,000 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 80947.
+
+## INC-2017-BOTN-547441
+Incident INC-2017-BOTN-547441 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 44 µs, packet rate 45,455 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 88610.
+
+## INC-2017-BOTN-513313
+Incident INC-2017-BOTN-513313 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 80,105 µs, packet rate 87 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 54482.
+
+## INC-2017-BOTN-515346
+Incident INC-2017-BOTN-515346 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 73,364 µs, packet rate 95 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 56515.
+
+## INC-2017-BOTN-538136
+Incident INC-2017-BOTN-538136 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 47 µs, packet rate 42,553 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 79305.
+
+## INC-2017-BOTN-544502
+Incident INC-2017-BOTN-544502 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 84,526 µs, packet rate 83 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 85671.
+
+## INC-2017-BOTN-541355
+Incident INC-2017-BOTN-541355 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 72,932 µs, packet rate 96 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 82524.
+
+## INC-2017-BOTN-513961
+Incident INC-2017-BOTN-513961 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 23 µs, packet rate 86,957 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 55130.
+
+## INC-2017-BOTN-543593
+Incident INC-2017-BOTN-543593 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 77,743 µs, packet rate 90 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 84762.
+
+## INC-2017-BOTN-513387
+Incident INC-2017-BOTN-513387 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 22 µs, packet rate 90,909 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 54556.
+
+## INC-2017-BOTN-540907
+Incident INC-2017-BOTN-540907 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 3 µs, packet rate 666,667 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 82076.
+
+## INC-2017-BOTN-543766
+Incident INC-2017-BOTN-543766 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 62,432 µs, packet rate 112 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 84935.
+
+## INC-2017-BOTN-542391
+Incident INC-2017-BOTN-542391 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 303,605 µs, packet rate 30 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 83560.
+
+## INC-2017-BOTN-519287
+Incident INC-2017-BOTN-519287 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 53,900 µs, packet rate 130 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 60456.
+
+## INC-2017-BOTN-537209
+Incident INC-2017-BOTN-537209 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 77,554 µs, packet rate 90 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 78378.
+
+## INC-2017-BOTN-545157
+Incident INC-2017-BOTN-545157 (botnet - botnet): Command & Control (C2) beaconing activity exhibiting consistent packet inter-arrival times and periodic outbound synchronization. Observed on protocol 6, duration 16 µs, packet rate 125,000 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Botnet-Friday-no-metadata.parquet row 86326.
+
+## INC-2017-BRUT-647867
+Incident INC-2017-BRUT-647867 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 8,875,588 µs, packet rate 3 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 12998.
+
+## INC-2017-BRUT-648116
+Incident INC-2017-BRUT-648116 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 236 µs, packet rate 12,712 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 13247.
+
+## INC-2017-BRUT-781936
+Incident INC-2017-BRUT-781936 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 89 µs, packet rate 22,472 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 147067.
+
+## INC-2017-BRUT-783428
+Incident INC-2017-BRUT-783428 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 13,126,937 µs, packet rate 4 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 148559.
+
+## INC-2017-BRUT-783367
+Incident INC-2017-BRUT-783367 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 93 µs, packet rate 21,505 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 148498.
+
+## INC-2017-BRUT-647575
+Incident INC-2017-BRUT-647575 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 259 µs, packet rate 11,583 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 12706.
+
+## INC-2017-BRUT-646066
+Incident INC-2017-BRUT-646066 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 233 µs, packet rate 12,876 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 11197.
+
+## INC-2017-BRUT-780970
+Incident INC-2017-BRUT-780970 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 11,777,314 µs, packet rate 5 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 146101.
+
+## INC-2017-BRUT-645671
+Incident INC-2017-BRUT-645671 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 215 µs, packet rate 13,953 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 10802.
+
+## INC-2017-BRUT-646187
+Incident INC-2017-BRUT-646187 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 329 µs, packet rate 9,119 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 11318.
+
+## INC-2017-BRUT-646152
+Incident INC-2017-BRUT-646152 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 8,594,296 µs, packet rate 3 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 11283.
+
+## INC-2017-BRUT-781948
+Incident INC-2017-BRUT-781948 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 11,832,891 µs, packet rate 4 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 147079.
+
+## INC-2017-BRUT-780864
+Incident INC-2017-BRUT-780864 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 8,589,122 µs, packet rate 5 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 145995.
+
+## INC-2017-BRUT-648139
+Incident INC-2017-BRUT-648139 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 258 µs, packet rate 11,628 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 13270.
+
+## INC-2017-BRUT-783419
+Incident INC-2017-BRUT-783419 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 11,968,597 µs, packet rate 4 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 148550.
+
+## INC-2017-BRUT-782327
+Incident INC-2017-BRUT-782327 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 78 µs, packet rate 25,641 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 147458.
+
+## INC-2017-BRUT-784208
+Incident INC-2017-BRUT-784208 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 13,934,097 µs, packet rate 4 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 149339.
+
+## INC-2017-BRUT-646606
+Incident INC-2017-BRUT-646606 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 232 µs, packet rate 12,931 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 11737.
+
+## INC-2017-BRUT-647574
+Incident INC-2017-BRUT-647574 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 246 µs, packet rate 12,195 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 12705.
+
+## INC-2017-BRUT-783414
+Incident INC-2017-BRUT-783414 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 676 µs, packet rate 5,917 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 148545.
+
+## INC-2017-BRUT-648166
+Incident INC-2017-BRUT-648166 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 17 µs, packet rate 117,647 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 13297.
+
+## INC-2017-BRUT-645971
+Incident INC-2017-BRUT-645971 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 8,792,816 µs, packet rate 3 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 11102.
+
+## INC-2017-BRUT-646154
+Incident INC-2017-BRUT-646154 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 8,868,400 µs, packet rate 3 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 11285.
+
+## INC-2017-BRUT-782354
+Incident INC-2017-BRUT-782354 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 12,320,366 µs, packet rate 4 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 147485.
+
+## INC-2017-BRUT-783689
+Incident INC-2017-BRUT-783689 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 1,002 µs, packet rate 3,992 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 148820.
+
+## INC-2017-BRUT-645669
+Incident INC-2017-BRUT-645669 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 3,302,859 µs, packet rate 4 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 10800.
+
+## INC-2017-BRUT-781139
+Incident INC-2017-BRUT-781139 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 11,537,316 µs, packet rate 5 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 146270.
+
+## INC-2017-BRUT-782792
+Incident INC-2017-BRUT-782792 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 12,143,545 µs, packet rate 4 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 147923.
+
+## INC-2017-BRUT-781942
+Incident INC-2017-BRUT-781942 (brute_force - brute_force_ssh): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 11,866,745 µs, packet rate 5 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 147073.
+
+## INC-2017-BRUT-647647
+Incident INC-2017-BRUT-647647 (brute_force - brute_force_ftp): Credential stuffing and password guessing attack exhibiting repeated authentication attempts and elevated connection reset (RST) flags. Observed on protocol 6, duration 224 µs, packet rate 13,393 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Bruteforce-Tuesday-no-metadata.parquet row 12778.
+
+## INC-2017-DDOS-1042855
+Incident INC-2017-DDOS-1042855 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 10,403,699 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18272.
+
+## INC-2017-DDOS-1043021
+Incident INC-2017-DDOS-1043021 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 5,002,523 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18438.
+
+## INC-2017-DDOS-1043036
+Incident INC-2017-DDOS-1043036 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 918,742 µs, packet rate 10 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18453.
+
+## INC-2017-DDOS-1043072
+Incident INC-2017-DDOS-1043072 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 846,121 µs, packet rate 8 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18489.
+
+## INC-2017-DDOS-1043004
+Incident INC-2017-DDOS-1043004 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 899,992 µs, packet rate 9 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18421.
+
+## INC-2017-DDOS-1042892
+Incident INC-2017-DDOS-1042892 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 674,102 µs, packet rate 13 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18309.
+
+## INC-2017-DDOS-1042928
+Incident INC-2017-DDOS-1042928 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 7,107,579 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18345.
+
+## INC-2017-DDOS-1043064
+Incident INC-2017-DDOS-1043064 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 28,922 µs, packet rate 311 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18481.
+
+## INC-2017-DDOS-1042939
+Incident INC-2017-DDOS-1042939 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 101,190 µs, packet rate 79 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18356.
+
+## INC-2017-DDOS-1043001
+Incident INC-2017-DDOS-1043001 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 5,121,655 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18418.
+
+## INC-2017-DDOS-1042972
+Incident INC-2017-DDOS-1042972 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 36,129 µs, packet rate 194 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18389.
+
+## INC-2017-DDOS-1042888
+Incident INC-2017-DDOS-1042888 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 35,992 µs, packet rate 250 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18305.
+
+## INC-2017-DDOS-1043008
+Incident INC-2017-DDOS-1043008 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 500,999 µs, packet rate 18 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18425.
+
+## INC-2017-DDOS-1042917
+Incident INC-2017-DDOS-1042917 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 903,357 µs, packet rate 10 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18334.
+
+## INC-2017-DDOS-1042984
+Incident INC-2017-DDOS-1042984 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 7,357 µs, packet rate 1,087 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18401.
+
+## INC-2017-DDOS-1043052
+Incident INC-2017-DDOS-1043052 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 110,745 µs, packet rate 81 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18469.
+
+## INC-2017-DDOS-1042968
+Incident INC-2017-DDOS-1042968 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 6,062,903 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18385.
+
+## INC-2017-DDOS-1042995
+Incident INC-2017-DDOS-1042995 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 5,158,948 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18412.
+
+## INC-2017-DDOS-1042893
+Incident INC-2017-DDOS-1042893 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 5,727,050 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18310.
+
+## INC-2017-DDOS-1043057
+Incident INC-2017-DDOS-1043057 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 4,027,908 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18474.
+
+## INC-2017-DDOS-1042932
+Incident INC-2017-DDOS-1042932 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 7,040,809 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18349.
+
+## INC-2017-DDOS-1042839
+Incident INC-2017-DDOS-1042839 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 79,099,557 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18256.
+
+## INC-2017-DDOS-1043040
+Incident INC-2017-DDOS-1043040 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 920,721 µs, packet rate 10 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18457.
+
+## INC-2017-DDOS-1042871
+Incident INC-2017-DDOS-1042871 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 8,411,825 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18288.
+
+## INC-2017-DDOS-1042997
+Incident INC-2017-DDOS-1042997 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 5,167,366 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18414.
+
+## INC-2017-DDOS-1042847
+Incident INC-2017-DDOS-1042847 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 10,440,135 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18264.
+
+## INC-2017-DDOS-1042973
+Incident INC-2017-DDOS-1042973 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 6,033,004 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18390.
+
+## INC-2017-DDOS-1043012
+Incident INC-2017-DDOS-1043012 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 139,720 µs, packet rate 57 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18429.
+
+## INC-2017-DDOS-1042851
+Incident INC-2017-DDOS-1042851 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 10,417,544 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18268.
+
+## INC-2017-DDOS-1042875
+Incident INC-2017-DDOS-1042875 (ddos - ddos): Volumetric distributed denial of service attack flooding network boundaries with extreme packet and byte volumes. Observed on protocol 6, duration 8,399,787 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DDoS-Friday-no-metadata.parquet row 18292.
+
+## INC-2017-DOS-1511535
+Incident INC-2017-DOS-1511535 (dos - dos_goldeneye): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 5,004,971 µs, packet rate 3 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 265688.
+
+## INC-2017-DOS-1315759
+Incident INC-2017-DOS-1315759 (dos - dos_hulk): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 104,536 µs, packet rate 77 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 69912.
+
+## INC-2017-DOS-1511543
+Incident INC-2017-DOS-1511543 (dos - dos_goldeneye): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 6,548,353 µs, packet rate 2 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 265696.
+
+## INC-2017-DOS-1272992
+Incident INC-2017-DOS-1272992 (dos - dos_slowloris): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 100,024,689 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 27145.
+
+## INC-2017-DOS-1271278
+Incident INC-2017-DOS-1271278 (dos - dos_slowloris): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 515,536 µs, packet rate 12 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 25431.
+
+## INC-2017-DOS-1272989
+Incident INC-2017-DOS-1272989 (dos - dos_slowloris): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 100,026,319 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 27142.
+
+## INC-2017-DOS-1315811
+Incident INC-2017-DOS-1315811 (dos - dos_hulk): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 135,655 µs, packet rate 59 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 69964.
+
+## INC-2017-DOS-1310295
+Incident INC-2017-DOS-1310295 (dos - dos_slowhttptest): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 109,894,637 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 64448.
+
+## INC-2017-DOS-1271245
+Incident INC-2017-DOS-1271245 (dos - dos_slowloris): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 507,477 µs, packet rate 14 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 25398.
+
+## INC-2017-DOS-1315765
+Incident INC-2017-DOS-1315765 (dos - dos_hulk): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 938 µs, packet rate 2,132 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 69918.
+
+## INC-2017-DOS-1511637
+Incident INC-2017-DOS-1511637 (dos - dos_goldeneye): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 16,577,374 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 265790.
+
+## INC-2017-DOS-1511942
+Incident INC-2017-DOS-1511942 (dos - dos_goldeneye): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 18,974,266 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 266095.
+
+## INC-2017-DOS-1310431
+Incident INC-2017-DOS-1310431 (dos - dos_slowhttptest): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 63,124,031 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 64584.
+
+## INC-2017-DOS-1511678
+Incident INC-2017-DOS-1511678 (dos - dos_goldeneye): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 18,981,031 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 265831.
+
+## INC-2017-DOS-1310430
+Incident INC-2017-DOS-1310430 (dos - dos_slowhttptest): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 63,118,884 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 64583.
+
+## INC-2017-DOS-1310490
+Incident INC-2017-DOS-1310490 (dos - dos_slowhttptest): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 108,729,482 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 64643.
+
+## INC-2017-DOS-1310285
+Incident INC-2017-DOS-1310285 (dos - dos_slowhttptest): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 83,385,834 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 64438.
+
+## INC-2017-DOS-1310452
+Incident INC-2017-DOS-1310452 (dos - dos_slowhttptest): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 63,132,529 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 64605.
+
+## INC-2017-DOS-1272673
+Incident INC-2017-DOS-1272673 (dos - dos_slowloris): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 17,056,745 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 26826.
+
+## INC-2017-DOS-1310404
+Incident INC-2017-DOS-1310404 (dos - dos_slowhttptest): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 109,343,490 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 64557.
+
+## INC-2017-DOS-1310322
+Incident INC-2017-DOS-1310322 (dos - dos_slowhttptest): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 109,759,124 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 64475.
+
+## INC-2017-DOS-1315580
+Incident INC-2017-DOS-1315580 (dos - dos_hulk): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 1,381 µs, packet rate 5,069 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 69733.
+
+## INC-2017-DOS-1315769
+Incident INC-2017-DOS-1315769 (dos - dos_hulk): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 107,407 µs, packet rate 74 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 69922.
+
+## INC-2017-DOS-1310376
+Incident INC-2017-DOS-1310376 (dos - dos_slowhttptest): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 109,483,643 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 64529.
+
+## INC-2017-DOS-1310418
+Incident INC-2017-DOS-1310418 (dos - dos_slowhttptest): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 102,684,731 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 64571.
+
+## INC-2017-DOS-1511902
+Incident INC-2017-DOS-1511902 (dos - dos_goldeneye): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 17,593,575 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 266055.
+
+## INC-2017-DOS-1310352
+Incident INC-2017-DOS-1310352 (dos - dos_slowhttptest): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 109,608,672 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 64505.
+
+## INC-2017-DOS-1511947
+Incident INC-2017-DOS-1511947 (dos - dos_goldeneye): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 15,989,024 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 266100.
+
+## INC-2017-DOS-1272995
+Incident INC-2017-DOS-1272995 (dos - dos_slowloris): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 100,022,239 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 27148.
+
+## INC-2017-DOS-1315716
+Incident INC-2017-DOS-1315716 (dos - dos_hulk): Application-layer denial of service incident causing thread exhaustion, high connection persistence, and anomalous packet rate. Observed on protocol 6, duration 78,696 µs, packet rate 114 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 69869.
+
+## INC-2017-INFI-1898543
+Incident INC-2017-INFI-1898543 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 5,005,212 µs, packet rate 6 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 67705.
+
+## INC-2017-INFI-1909887
+Incident INC-2017-INFI-1909887 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 20 µs, packet rate 100,000 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 79049.
+
+## INC-2017-INFI-1940505
+Incident INC-2017-INFI-1940505 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 100,460,141 µs, packet rate 1 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 109667.
+
+## INC-2017-INFI-1909894
+Incident INC-2017-INFI-1909894 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 4,042,518 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 79056.
+
+## INC-2017-INFI-1905499
+Incident INC-2017-INFI-1905499 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 119,382,036 µs, packet rate 19 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 74661.
+
+## INC-2017-INFI-1973898
+Incident INC-2017-INFI-1973898 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 111,406,728 µs, packet rate 0 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 143060.
+
+## INC-2017-INFI-1899068
+Incident INC-2017-INFI-1899068 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 119,973,135 µs, packet rate 73 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 68230.
+
+## INC-2017-INFI-1981724
+Incident INC-2017-INFI-1981724 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 56,538,478 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 150886.
+
+## INC-2017-INFI-1947160
+Incident INC-2017-INFI-1947160 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 99,891,716 µs, packet rate 0 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 116322.
+
+## INC-2017-INFI-1910821
+Incident INC-2017-INFI-1910821 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 18,897,509 µs, packet rate 0 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 79983.
+
+## INC-2017-INFI-1979119
+Incident INC-2017-INFI-1979119 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 48,450,959 µs, packet rate 0 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 148281.
+
+## INC-2017-INFI-1902654
+Incident INC-2017-INFI-1902654 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 119,993,844 µs, packet rate 64 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 71816.
+
+## INC-2017-INFI-1966693
+Incident INC-2017-INFI-1966693 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 117,923,038 µs, packet rate 1 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 135855.
+
+## INC-2017-INFI-1960404
+Incident INC-2017-INFI-1960404 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 104,790,355 µs, packet rate 0 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 129566.
+
+## INC-2017-INFI-1908362
+Incident INC-2017-INFI-1908362 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 86,726,608 µs, packet rate 41 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 77524.
+
+## INC-2017-INFI-1975925
+Incident INC-2017-INFI-1975925 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 79,492,070 µs, packet rate 1 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 145087.
+
+## INC-2017-INFI-1892436
+Incident INC-2017-INFI-1892436 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 42,664,070 µs, packet rate 0 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 61598.
+
+## INC-2017-INFI-1944798
+Incident INC-2017-INFI-1944798 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 24,006,815 µs, packet rate 3 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 113960.
+
+## INC-2017-INFI-1906608
+Incident INC-2017-INFI-1906608 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 119,995,180 µs, packet rate 30 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 75770.
+
+## INC-2017-INFI-1902778
+Incident INC-2017-INFI-1902778 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 78,233,714 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 71940.
+
+## INC-2017-INFI-1894355
+Incident INC-2017-INFI-1894355 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 2,030 µs, packet rate 985 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 63517.
+
+## INC-2017-INFI-1898099
+Incident INC-2017-INFI-1898099 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 119,991,834 µs, packet rate 92 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 67261.
+
+## INC-2017-INFI-1951233
+Incident INC-2017-INFI-1951233 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 101,086,101 µs, packet rate 0 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 120395.
+
+## INC-2017-INFI-1900395
+Incident INC-2017-INFI-1900395 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 119,974,830 µs, packet rate 57 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 69557.
+
+## INC-2017-INFI-1908308
+Incident INC-2017-INFI-1908308 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 116,393,329 µs, packet rate 9 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 77470.
+
+## INC-2017-INFI-1962137
+Incident INC-2017-INFI-1962137 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 101,039,258 µs, packet rate 1 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 131299.
+
+## INC-2017-INFI-1964826
+Incident INC-2017-INFI-1964826 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 69,483,113 µs, packet rate 1 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 133988.
+
+## INC-2017-INFI-1933717
+Incident INC-2017-INFI-1933717 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 66,695,827 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 102879.
+
+## INC-2017-INFI-1957504
+Incident INC-2017-INFI-1957504 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 25,009,948 µs, packet rate 3 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 126666.
+
+## INC-2017-INFI-1936882
+Incident INC-2017-INFI-1936882 (infiltration - infiltration): Post-compromise network infiltration and lateral movement probe targeting internal services and privilege boundaries. Observed on protocol 6, duration 99,651,130 µs, packet rate 0 pkts/s, SYN flags: 1, RST flags: 0. Source provenance: Infiltration-Thursday-no-metadata.parquet row 106044.
+
+## INC-2017-PORT-2076076
+Incident INC-2017-PORT-2076076 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 799 µs, packet rate 3,755 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 37608.
+
+## INC-2017-PORT-2076049
+Incident INC-2017-PORT-2076049 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 923 µs, packet rate 3,250 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 37581.
+
+## INC-2017-PORT-2079665
+Incident INC-2017-PORT-2079665 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 1,050 µs, packet rate 3,810 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 41197.
+
+## INC-2017-PORT-2090918
+Incident INC-2017-PORT-2090918 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 9,813 µs, packet rate 611 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 52450.
+
+## INC-2017-PORT-2079476
+Incident INC-2017-PORT-2079476 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 848 µs, packet rate 4,717 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 41008.
+
+## INC-2017-PORT-2091162
+Incident INC-2017-PORT-2091162 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 2,665 µs, packet rate 1,876 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 52694.
+
+## INC-2017-PORT-2078043
+Incident INC-2017-PORT-2078043 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 914 µs, packet rate 4,376 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 39575.
+
+## INC-2017-PORT-2090865
+Incident INC-2017-PORT-2090865 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 2,710 µs, packet rate 1,845 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 52397.
+
+## INC-2017-PORT-2090939
+Incident INC-2017-PORT-2090939 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 2,668 µs, packet rate 1,874 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 52471.
+
+## INC-2017-PORT-2091147
+Incident INC-2017-PORT-2091147 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 106,138 µs, packet rate 85 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 52679.
+
+## INC-2017-PORT-2039916
+Incident INC-2017-PORT-2039916 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 70 µs, packet rate 28,571 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 1448.
+
+## INC-2017-PORT-2079591
+Incident INC-2017-PORT-2079591 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 802 µs, packet rate 4,988 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 41123.
+
+## INC-2017-PORT-2090775
+Incident INC-2017-PORT-2090775 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 694 µs, packet rate 4,323 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 52307.
+
+## INC-2017-PORT-2076752
+Incident INC-2017-PORT-2076752 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 130 µs, packet rate 15,385 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 38284.
+
+## INC-2017-PORT-2075116
+Incident INC-2017-PORT-2075116 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 648 µs, packet rate 4,630 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 36648.
+
+## INC-2017-PORT-2076730
+Incident INC-2017-PORT-2076730 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 655 µs, packet rate 4,580 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 38262.
+
+## INC-2017-PORT-2078065
+Incident INC-2017-PORT-2078065 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 667 µs, packet rate 5,997 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 39597.
+
+## INC-2017-PORT-2078010
+Incident INC-2017-PORT-2078010 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 154 µs, packet rate 12,987 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 39542.
+
+## INC-2017-PORT-2078050
+Incident INC-2017-PORT-2078050 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 887 µs, packet rate 4,510 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 39582.
+
+## INC-2017-PORT-2079161
+Incident INC-2017-PORT-2079161 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 626 µs, packet rate 6,390 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 40693.
+
+## INC-2017-PORT-2079565
+Incident INC-2017-PORT-2079565 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 783 µs, packet rate 5,109 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 41097.
+
+## INC-2017-PORT-2076419
+Incident INC-2017-PORT-2076419 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 675 µs, packet rate 4,444 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 37951.
+
+## INC-2017-PORT-2077030
+Incident INC-2017-PORT-2077030 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 110 µs, packet rate 18,182 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 38562.
+
+## INC-2017-PORT-2090772
+Incident INC-2017-PORT-2090772 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 575 µs, packet rate 5,217 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 52304.
+
+## INC-2017-PORT-2090948
+Incident INC-2017-PORT-2090948 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 676 µs, packet rate 4,438 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 52480.
+
+## INC-2017-PORT-2078034
+Incident INC-2017-PORT-2078034 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 705 µs, packet rate 5,674 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 39566.
+
+## INC-2017-PORT-2076341
+Incident INC-2017-PORT-2076341 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 87 µs, packet rate 22,989 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 37873.
+
+## INC-2017-PORT-2079235
+Incident INC-2017-PORT-2079235 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 138 µs, packet rate 14,493 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 40767.
+
+## INC-2017-PORT-2090936
+Incident INC-2017-PORT-2090936 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 97,047 µs, packet rate 93 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 52468.
+
+## INC-2017-PORT-2079415
+Incident INC-2017-PORT-2079415 (port_scan - port_scan): Reconnaissance incident involving rapid TCP SYN port scanning and service discovery across target host ports. Observed on protocol 6, duration 160 µs, packet rate 12,500 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: Portscan-Friday-no-metadata.parquet row 40947.
+
+## INC-2017-RARE-1752215
+Incident INC-2017-RARE-1752215 (rare_attack - heartbleed): Network security incident observed in traffic flow. Observed on protocol 6, duration 119,296,592 µs, packet rate 40 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 506368.
+
+## INC-2017-RARE-1752139
+Incident INC-2017-RARE-1752139 (rare_attack - heartbleed): Network security incident observed in traffic flow. Observed on protocol 6, duration 119,257,653 µs, packet rate 41 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 506292.
+
+## INC-2017-RARE-1751626
+Incident INC-2017-RARE-1751626 (rare_attack - heartbleed): Network security incident observed in traffic flow. Observed on protocol 6, duration 119,302,728 µs, packet rate 37 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 505779.
+
+## INC-2017-RARE-1751745
+Incident INC-2017-RARE-1751745 (rare_attack - heartbleed): Network security incident observed in traffic flow. Observed on protocol 6, duration 119,260,295 µs, packet rate 41 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 505898.
+
+## INC-2017-RARE-1751667
+Incident INC-2017-RARE-1751667 (rare_attack - heartbleed): Network security incident observed in traffic flow. Observed on protocol 6, duration 119,262,215 µs, packet rate 41 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 505820.
+
+## INC-2017-RARE-1751757
+Incident INC-2017-RARE-1751757 (rare_attack - heartbleed): Network security incident observed in traffic flow. Observed on protocol 6, duration 119,297,996 µs, packet rate 41 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 505910.
+
+## INC-2017-RARE-1751975
+Incident INC-2017-RARE-1751975 (rare_attack - heartbleed): Network security incident observed in traffic flow. Observed on protocol 6, duration 119,259,012 µs, packet rate 41 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 506128.
+
+## INC-2017-RARE-1751951
+Incident INC-2017-RARE-1751951 (rare_attack - heartbleed): Network security incident observed in traffic flow. Observed on protocol 6, duration 119,259,886 µs, packet rate 41 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 506104.
+
+## INC-2017-RARE-1752209
+Incident INC-2017-RARE-1752209 (rare_attack - heartbleed): Network security incident observed in traffic flow. Observed on protocol 6, duration 119,299,621 µs, packet rate 41 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 506362.
+
+## INC-2017-RARE-1751697
+Incident INC-2017-RARE-1751697 (rare_attack - heartbleed): Network security incident observed in traffic flow. Observed on protocol 6, duration 119,261,118 µs, packet rate 41 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 505850.
+
+## INC-2017-RARE-1752226
+Incident INC-2017-RARE-1752226 (rare_attack - heartbleed): Network security incident observed in traffic flow. Observed on protocol 6, duration 24,719,667 µs, packet rate 42 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: DoS-Wednesday-no-metadata.parquet row 506379.
+
+## INC-2017-WEB_-2243772
+Incident INC-2017-WEB_-2243772 (web_attack - web_attack_sql_injection): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 73 µs, packet rate 27,397 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 85782.
+
+## INC-2017-WEB_-2176141
+Incident INC-2017-WEB_-2176141 (web_attack - web_attack_brute_force): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 6,161,169 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 18151.
+
+## INC-2017-WEB_-2229830
+Incident INC-2017-WEB_-2229830 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,237,597 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 71840.
+
+## INC-2017-WEB_-2229062
+Incident INC-2017-WEB_-2229062 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,576,392 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 71072.
+
+## INC-2017-WEB_-2227383
+Incident INC-2017-WEB_-2227383 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,949,689 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 69393.
+
+## INC-2017-WEB_-2226159
+Incident INC-2017-WEB_-2226159 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,483,359 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 68169.
+
+## INC-2017-WEB_-2244163
+Incident INC-2017-WEB_-2244163 (web_attack - web_attack_sql_injection): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,005,388 µs, packet rate 2 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 86173.
+
+## INC-2017-WEB_-2227575
+Incident INC-2017-WEB_-2227575 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,615,519 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 69585.
+
+## INC-2017-WEB_-2180612
+Incident INC-2017-WEB_-2180612 (web_attack - web_attack_brute_force): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,599,994 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 22622.
+
+## INC-2017-WEB_-2227372
+Incident INC-2017-WEB_-2227372 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,414,135 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 69382.
+
+## INC-2017-WEB_-2228830
+Incident INC-2017-WEB_-2228830 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,148,819 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 70840.
+
+## INC-2017-WEB_-2229219
+Incident INC-2017-WEB_-2229219 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,929,884 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 71229.
+
+## INC-2017-WEB_-2229240
+Incident INC-2017-WEB_-2229240 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,041,750 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 71250.
+
+## INC-2017-WEB_-2226278
+Incident INC-2017-WEB_-2226278 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,437,883 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 68288.
+
+## INC-2017-WEB_-2227382
+Incident INC-2017-WEB_-2227382 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,228,394 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 69392.
+
+## INC-2017-WEB_-2227362
+Incident INC-2017-WEB_-2227362 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,287,389 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 69372.
+
+## INC-2017-WEB_-2180124
+Incident INC-2017-WEB_-2180124 (web_attack - web_attack_brute_force): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,729,301 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 22134.
+
+## INC-2017-WEB_-2242172
+Incident INC-2017-WEB_-2242172 (web_attack - web_attack_sql_injection): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 43 µs, packet rate 46,512 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 84182.
+
+## INC-2017-WEB_-2176603
+Incident INC-2017-WEB_-2176603 (web_attack - web_attack_brute_force): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,359,339 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 18613.
+
+## INC-2017-WEB_-2177898
+Incident INC-2017-WEB_-2177898 (web_attack - web_attack_brute_force): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,576,453 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 19908.
+
+## INC-2017-WEB_-2225861
+Incident INC-2017-WEB_-2225861 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,116,299 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 67871.
+
+## INC-2017-WEB_-2226186
+Incident INC-2017-WEB_-2226186 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,036,259 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 68196.
+
+## INC-2017-WEB_-2226141
+Incident INC-2017-WEB_-2226141 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,888,484 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 68151.
+
+## INC-2017-WEB_-2178820
+Incident INC-2017-WEB_-2178820 (web_attack - web_attack_brute_force): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,562,534 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 20830.
+
+## INC-2017-WEB_-2176505
+Incident INC-2017-WEB_-2176505 (web_attack - web_attack_brute_force): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,771,371 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 18515.
+
+## INC-2017-WEB_-2178658
+Incident INC-2017-WEB_-2178658 (web_attack - web_attack_brute_force): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,282,518 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 20668.
+
+## INC-2017-WEB_-2228215
+Incident INC-2017-WEB_-2228215 (web_attack - web_attack_xss): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,339,676 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 70225.
+
+## INC-2017-WEB_-2175944
+Incident INC-2017-WEB_-2175944 (web_attack - web_attack_brute_force): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,848,206 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 17954.
+
+## INC-2017-WEB_-2180267
+Incident INC-2017-WEB_-2180267 (web_attack - web_attack_brute_force): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,578,909 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 22277.
+
+## INC-2017-WEB_-2178767
+Incident INC-2017-WEB_-2178767 (web_attack - web_attack_brute_force): Web application exploit probe containing malicious SQL injection keywords, cross-site scripting tags, or directory traversal indicators. Observed on protocol 6, duration 5,926,844 µs, packet rate 1 pkts/s, SYN flags: 0, RST flags: 0. Source provenance: WebAttacks-Thursday-no-metadata.parquet row 20777.
